@@ -6,7 +6,7 @@ import javax.persistence.*;
 /**
  * Created by lacau on 28/01/16.
  */
-//@Entity
+@Entity
 public class Profile implements Serializable {
 
     private static final long serialVersionUID = 3033285822549753276L;

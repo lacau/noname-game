@@ -6,7 +6,7 @@ import javax.persistence.*;
 /**
  * Created by lacau on 28/01/16.
  */
-//@Entity
+@Entity
 public class Achievement implements Serializable {
 
     private static final long serialVersionUID = 7574799314038248717L;

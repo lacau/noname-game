@@ -16,8 +16,11 @@ public class Hero implements Serializable {
     @Column(name = "cd_id")
     private Long cdId;
 
-    @Column(name = "name")
+    @Column(name = "st_name")
     private String name;
+
+    @Column(name = "nr_level")
+    private Integer level;
 
     public Long getCdId() {
         return cdId;
@@ -31,8 +34,15 @@ public class Hero implements Serializable {
         return name;
     }
 
-    public Hero setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 }

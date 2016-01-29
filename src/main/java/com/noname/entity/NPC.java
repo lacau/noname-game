@@ -1,10 +1,7 @@
 package com.noname.entity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.io.Serializable;
+import java.io.*;
+import javax.persistence.*;
 
 /**
  * Created by lacau on 28/01/16.
@@ -18,4 +15,12 @@ public class NPC implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "cd_id")
     private Long cdId;
+
+    public Long getCdId() {
+        return cdId;
+    }
+
+    public void setCdId(Long cdId) {
+        this.cdId = cdId;
+    }
 }

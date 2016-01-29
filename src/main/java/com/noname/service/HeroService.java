@@ -14,7 +14,11 @@ public class HeroService {
     @Autowired
     private HeroRepository heroRepository;
 
-    public Hero findHero(Long cdId) {
-        return heroRepository.find(cdId);
+    public Hero findHeroById(Long cdId) {
+        return heroRepository.findById(cdId);
+    }
+
+    public Hero findHeroByName(String name) {
+        return heroRepository.findByName(name);
     }
 }

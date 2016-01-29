@@ -21,7 +21,13 @@ public class HeroEndPoint {
 
     @GET
     @Path("/{id}")
-    public Hero get(@PathParam("id") Long cdId) {
-        return service.findHero(cdId);
+    public Hero getHeroById(@PathParam("id") Long cdId) {
+        return service.findHeroById(cdId);
+    }
+
+    @GET
+    @Path("/name/{name}")
+    public Hero getHeroByName(@PathParam("name") String name) {
+        return service.findHeroByName(name);
     }
 }

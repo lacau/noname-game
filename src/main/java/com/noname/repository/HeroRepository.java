@@ -16,8 +16,24 @@ public class HeroRepository {
     EntityManager entityManager;
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public Hero find(Long id) {
+    public Hero findById(Long id) {
         return entityManager.find(Hero.class, id);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Hero findByName(String name) {
+        StringBuilder hql = new StringBuilder();
+        hql.append("SELECT hero FROM Hero hero ");
+        hql.append("WHERE hero.name = :name");
+
+        final TypedQuery<Hero> query = entityManager.createQuery(hql.toString(), Hero.class);
+        query.setParameter("name", name);
+
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            throw e;
+        }
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

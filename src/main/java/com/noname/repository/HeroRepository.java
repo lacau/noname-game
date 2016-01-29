@@ -15,12 +15,10 @@ public class HeroRepository {
     @PersistenceContext
     EntityManager entityManager;
 
-    @Transactional(propagation = Propagation.REQUIRED)
     public Hero findById(Long id) {
         return entityManager.find(Hero.class, id);
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
     public Hero findByName(String name) {
         StringBuilder hql = new StringBuilder();
         hql.append("SELECT hero FROM Hero hero ");

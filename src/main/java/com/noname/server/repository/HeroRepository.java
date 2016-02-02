@@ -1,10 +1,14 @@
 package com.noname.server.repository;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
-import com.noname.server.entity.*;
-import org.springframework.stereotype.*;
-import org.springframework.transaction.annotation.*;
+import com.noname.server.entity.Hero;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by lacau on 29/01/16.

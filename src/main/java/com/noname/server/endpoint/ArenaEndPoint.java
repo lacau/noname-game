@@ -1,4 +1,4 @@
-package com.noname.endpoint;
+package com.noname.server.endpoint;
 
 import org.springframework.stereotype.Component;
 

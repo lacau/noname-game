@@ -1,8 +1,8 @@
-package com.noname.repository;
+package com.noname.server.repository;
 
 import javax.persistence.*;
 
-import com.noname.entity.*;
+import com.noname.server.entity.*;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.*;
 

@@ -1,10 +1,10 @@
-package com.noname.endpoint;
+package com.noname.server.endpoint;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
-import com.noname.entity.*;
-import com.noname.service.*;
+import com.noname.server.entity.*;
+import com.noname.server.service.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 

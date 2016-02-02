@@ -1,4 +1,4 @@
-package com.noname.entity;
+package com.noname.server.entity;
 
 import java.io.*;
 import javax.persistence.*;
@@ -7,9 +7,9 @@ import javax.persistence.*;
  * Created by lacau on 28/01/16.
  */
 @Entity
-public class BattleLog implements Serializable {
+public class Skill implements Serializable {
 
-    private static final long serialVersionUID = 8075983434647144595L;
+    private static final long serialVersionUID = -2797937113003680315L;
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

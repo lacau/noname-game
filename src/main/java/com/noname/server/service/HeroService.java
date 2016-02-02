@@ -1,7 +1,7 @@
-package com.noname.service;
+package com.noname.server.service;
 
-import com.noname.entity.Hero;
-import com.noname.repository.HeroRepository;
+import com.noname.server.entity.Hero;
+import com.noname.server.repository.HeroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

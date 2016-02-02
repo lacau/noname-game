@@ -1,4 +1,4 @@
-package com.noname.entity;
+package com.noname.server.entity;
 
 import java.io.*;
 import javax.persistence.*;
@@ -7,9 +7,9 @@ import javax.persistence.*;
  * Created by lacau on 28/01/16.
  */
 @Entity
-public class Credential implements Serializable {
+public class Achievement implements Serializable {
 
-    private static final long serialVersionUID = -1436241877796240155L;
+    private static final long serialVersionUID = 7574799314038248717L;
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

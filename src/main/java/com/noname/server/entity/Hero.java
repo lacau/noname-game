@@ -12,7 +12,7 @@ public class Hero implements Serializable {
     private static final long serialVersionUID = -2530786099257695664L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cd_id")
     private Long cdId;
 

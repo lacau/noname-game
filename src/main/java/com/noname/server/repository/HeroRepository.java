@@ -29,7 +29,7 @@ public class HeroRepository {
 
         try {
             return query.getSingleResult();
-        } catch (NoResultException e) {
+        } catch(NoResultException e) {
             throw e;
         }
     }

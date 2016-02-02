@@ -12,7 +12,7 @@ public class Credential implements Serializable {
     private static final long serialVersionUID = -1436241877796240155L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cd_id")
     private Long cdId;
 

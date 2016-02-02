@@ -12,7 +12,7 @@ public class Achievement implements Serializable {
     private static final long serialVersionUID = 7574799314038248717L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cd_id")
     private Long cdId;
 

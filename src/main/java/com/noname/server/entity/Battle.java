@@ -12,7 +12,7 @@ public class Battle implements Serializable {
     private static final long serialVersionUID = 4712572552527488499L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cd_id")
     private Long cdId;
 

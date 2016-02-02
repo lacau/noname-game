@@ -12,9 +12,15 @@ public class Skill implements Serializable {
     private static final long serialVersionUID = -2797937113003680315L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cd_id")
     private Long cdId;
+
+    @Column(name = "st_name")
+    private String name;
+
+    @Column(name = "nr_level")
+    private Integer level;
 
     public Long getCdId() {
         return cdId;
@@ -22,5 +28,21 @@ public class Skill implements Serializable {
 
     public void setCdId(Long cdId) {
         this.cdId = cdId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 }

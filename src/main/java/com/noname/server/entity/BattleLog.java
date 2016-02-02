@@ -12,7 +12,7 @@ public class BattleLog implements Serializable {
     private static final long serialVersionUID = 8075983434647144595L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cd_id")
     private Long cdId;
 

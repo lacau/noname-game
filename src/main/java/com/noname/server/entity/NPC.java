@@ -12,7 +12,7 @@ public class NPC implements Serializable {
     private static final long serialVersionUID = 6120053498353428193L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cd_id")
     private Long cdId;
 

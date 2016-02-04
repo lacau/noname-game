@@ -25,11 +25,23 @@ CREATE TABLE ITEM (
     st_description VARCHAR(200) NOT NULL
 );
 
+CREATE TABLE HERO_ITEM (
+    cd_id serial PRIMARY KEY NOT NULL,
+    fk_hero INTEGER NOT NULL,
+    fk_item INTEGER NOT NULL
+)
+
 CREATE TABLE ACHIEVEMENT (
     cd_id serial PRIMARY KEY NOT NULL,
     st_name VARCHAR(30) NOT NULL,
     st_description VARCHAR(200) NOT NULL
 );
+
+CREATE TABLE HERO_ACHIEVEMENT (
+    cd_id serial PRIMARY KEY NOT NULL,
+    fk_hero INTEGER NOT NULL,
+    fk_achievement INTEGER NOT NULL
+)
 
 CREATE TABLE ARENA (
     cd_id serial PRIMARY KEY NOT NULL,

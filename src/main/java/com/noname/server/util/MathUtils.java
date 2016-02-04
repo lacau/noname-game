@@ -36,24 +36,12 @@ public class MathUtils {
         return str * str + (str * lvl) * lvl;
     }
 
-    public static int calculateTotalMp(int lvl, int inte) {
-        return inte * inte + (inte * lvl) * lvl;
-    }
-
     public static float calculatePDef(int lvl, int str) {
         return str * str + lvl * lvl + 10 * (lvl / 1.5f);
     }
 
-    public static float calculateMDef(int lvl, int inte) {
-        return inte * inte + lvl * lvl + 10 * (lvl / 1.5f);
-    }
-
     public static float calculatePAtk(int lvl, int str) {
         return str * 5 * (lvl / 5.2f);
-    }
-
-    public static float calculateMAtk(int lvl, int inte) {
-        return inte * 5 * (lvl / 5.2f);
     }
 
     public static float calculateRandomDmg(float dmg) {

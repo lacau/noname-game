@@ -4,6 +4,11 @@ CREATE TABLE HERO (
     nr_level INTEGER NOT NULL
 );
 
+CREATE TABLE PROFILE (
+    cd_id serial PRIMARY KEY NOT NULL,
+    fk_hero INTEGER NOT NULL
+)
+
 CREATE TABLE SKILL (
     cd_id serial PRIMARY KEY NOT NULL,
     st_name VARCHAR(30) NOT NULL,

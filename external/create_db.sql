@@ -11,6 +11,14 @@ CREATE TABLE SKILL (
     nr_power INTEGER NOT NULL
 );
 
+CREATE TABLE HERO_SKILL (
+    cd_id serial PRIMARY KEY NOT NULL,
+    fk_hero INTEGER NOT NULL,
+    fk_skill INTEGER NOT NULL,
+    nr_level INTEGER NOT NULL,
+    fl_selected BOOL NOT NULL
+)
+
 CREATE TABLE ITEM (
     cd_id serial PRIMARY KEY NOT NULL,
     st_name VARCHAR(30) NOT NULL,

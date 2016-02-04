@@ -48,6 +48,12 @@ CREATE TABLE ARENA (
     st_name VARCHAR(30) NOT NULL
 );
 
+CREATE TABLE HERO_ARENA (
+    cd_id serial PRIMARY KEY NOT NULL,
+    fk_hero INTEGER NOT NULL,
+    fk_arena INTEGER NOT NULL
+)
+
 CREATE TABLE NPC (
     cd_id serial PRIMARY KEY NOT NULL,
     st_name VARCHAR(30) NOT NULL

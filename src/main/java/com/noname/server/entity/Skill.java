@@ -26,8 +26,8 @@ public class Skill implements Serializable {
     @Column(name = "st_description")
     private String description;
 
-    @Column(name = "nr_level")
-    private Integer level;
+    @Column(name = "nr_power")
+    private Integer power;
 
     public Long getCdId() {
         return cdId;
@@ -53,11 +53,11 @@ public class Skill implements Serializable {
         this.description = description;
     }
 
-    public Integer getLevel() {
-        return level;
+    public Integer getPower() {
+        return power;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
+    public void setPower(Integer power) {
+        this.power = power;
     }
 }

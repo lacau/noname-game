@@ -6,7 +6,12 @@ CREATE TABLE HERO (
 
 CREATE TABLE PROFILE (
     cd_id serial PRIMARY KEY NOT NULL,
-    fk_hero INTEGER NOT NULL
+    fk_hero INTEGER NOT NULL,
+    nr_kill INTEGER NOT NULL,
+    nr_win INTEGER NOT NULL,
+    nr_loose INTEGER NOT NULL,
+    nr_die INTEGER NOT NULL,
+    nr_battle INTEGER NOT NULL
 )
 
 CREATE TABLE SKILL (
@@ -64,6 +69,13 @@ CREATE TABLE NPC (
     st_name VARCHAR(30) NOT NULL
 );
 
+CREATE TABLE PROFILE_NPC (
+    cd_id serial PRIMARY KEY NOT NULL,
+    fk_profile INTEGER NOT NULL,
+    fk_npc INTEGER NOT NULL,
+    nr_kill INTEGER NOT NULL
+);
+
 CREATE TABLE BATTLE (
     cd_id serial PRIMARY KEY NOT NULL,
     fk_hero INTEGER NOT NULL,
@@ -86,7 +98,11 @@ CREATE TABLE STORE_ITEM (
 )
 
 CREATE TABLE CREDENTIAL (
-    cd_id serial PRIMARY KEY NOT NULL
+    cd_id serial PRIMARY KEY NOT NULL,
+    st_login VARCHAR(30) NOT NULL,
+    st_password VARCHAR(200) NOT NULL,
+    st_token VARCHAR(200) NOT NULL,
+    dt_token TIMESTAMP NOT NULL
 )
 
 CREATE TABLE CREDENTIAL_HERO (

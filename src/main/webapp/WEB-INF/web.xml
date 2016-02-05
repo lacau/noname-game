@@ -32,10 +32,4 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>WEB-INF/spring-context.xml</param-value>
     </context-param>
-
-    <!-- welcome file -->
-    <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
-    </welcome-file-list>
-
 </web-app>

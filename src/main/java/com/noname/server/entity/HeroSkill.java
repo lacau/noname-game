@@ -20,11 +20,33 @@ public class HeroSkill implements Serializable {
     @Column(name = "cd_id")
     private Long cdId;
 
+    @Column(name = "nr_level")
+    private Integer level;
+
+    @Column(name = "nr_selected")
+    private Boolean selected;
+
     public Long getCdId() {
         return cdId;
     }
 
     public void setCdId(Long cdId) {
         this.cdId = cdId;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    public Boolean getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Boolean selected) {
+        this.selected = selected;
     }
 }

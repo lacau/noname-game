@@ -20,11 +20,66 @@ public class Profile implements Serializable {
     @Column(name = "cd_id")
     private Long cdId;
 
+    @Column(name = "nr_kill")
+    private Integer kills;
+
+    @Column(name = "nr_win")
+    private Integer wins;
+
+    @Column(name = "nr_loose")
+    private Integer looses;
+
+    @Column(name = "nr_die")
+    private Integer dies;
+
+    @Column(name = "nr_battle")
+    private Integer battles;
+
     public Long getCdId() {
         return cdId;
     }
 
     public void setCdId(Long cdId) {
         this.cdId = cdId;
+    }
+
+    public Integer getKills() {
+        return kills;
+    }
+
+    public void setKills(Integer kills) {
+        this.kills = kills;
+    }
+
+    public Integer getWins() {
+        return wins;
+    }
+
+    public void setWins(Integer wins) {
+        this.wins = wins;
+    }
+
+    public Integer getLooses() {
+        return looses;
+    }
+
+    public void setLooses(Integer looses) {
+        this.looses = looses;
+    }
+
+    public Integer getDies() {
+        return dies;
+    }
+
+    public void setDies(Integer dies) {
+        this.dies = dies;
+    }
+
+    public Integer getBattles() {
+        return battles;
+    }
+
+    public void setBattles(Integer battles) {
+        this.battles = battles;
     }
 }

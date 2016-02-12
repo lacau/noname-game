@@ -1,6 +1,9 @@
 package com.noname.server.service;
 
+import com.noname.server.exception.AccountAlreadyExistsException;
 import com.noname.server.json.CredentialIn;
+import com.noname.server.repository.CredentialRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,7 +12,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class AccountService {
 
-    public void createAccount(CredentialIn credentialIn) {
+    @Autowired
+    private CredentialRepository credentialRepository;
 
+    public void createAccount(CredentialIn credentialIn) throws AccountAlreadyExistsException {
+        Long countByLogin = credentialRepository.findCountByLogin(credentialIn.getLogin());
+        if(countByLogin != 0)
+            throw new AccountAlreadyExistsException();
     }
 }

@@ -1,6 +1,6 @@
 package com.noname.server.exception;
 
-import javax.ws.rs.core.Response;
+import org.springframework.http.HttpStatus;
 
 /**
  * Created by lacau on 12/02/16.
@@ -8,6 +8,6 @@ import javax.ws.rs.core.Response;
 public class AccountAlreadyExistsException extends ResponseException {
 
     public AccountAlreadyExistsException() {
-        super("", Response.Status.CONFLICT);
+        super("", HttpStatus.CONFLICT);
     }
 }

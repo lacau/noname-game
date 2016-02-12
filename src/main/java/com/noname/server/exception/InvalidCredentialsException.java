@@ -1,6 +1,6 @@
 package com.noname.server.exception;
 
-import javax.ws.rs.core.Response;
+import org.springframework.http.HttpStatus;
 
 /**
  * Created by lacau on 12/02/16.
@@ -8,6 +8,6 @@ import javax.ws.rs.core.Response;
 public class InvalidCredentialsException extends ResponseException {
 
     public InvalidCredentialsException() {
-        super("", Response.Status.BAD_REQUEST);
+        super("", HttpStatus.BAD_REQUEST);
     }
 }

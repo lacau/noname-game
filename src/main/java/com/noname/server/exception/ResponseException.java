@@ -1,20 +1,20 @@
 package com.noname.server.exception;
 
-import javax.ws.rs.core.Response;
+import org.springframework.http.HttpStatus;
 
 /**
  * Created by lacau on 12/02/16.
  */
 public class ResponseException extends Exception {
 
-    private Response.Status status;
+    private HttpStatus status;
 
-    public ResponseException(String messageKey, Response.Status status) {
+    public ResponseException(String messageKey, HttpStatus status) {
         super(messageKey);
         this.status = status;
     }
 
-    public Response.Status getStatus() {
+    public HttpStatus getStatus() {
         return status;
     }
 }

@@ -13,6 +13,7 @@ import com.noname.server.json.CredentialOut;
 import com.noname.server.json.DefaultErrorOut;
 import com.noname.server.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 /**
@@ -29,7 +30,7 @@ public class LoginEndPoint {
     @Path("/token")
     public Response byToken(@HeaderParam("auth_token") String authToken, @HeaderParam("auth_id") Long authId) {
         if(authToken == null || authId == null)
-            return Response.status(417).build();
+            return Response.status(HttpStatus.EXPECTATION_FAILED.value()).build();
 
         Credential credential = new Credential();
         credential.setCdId(authId);
@@ -39,7 +40,7 @@ public class LoginEndPoint {
             final CredentialOut credentialOut = loginService.doLoginByToken(credential);
             return Response.ok().entity(credentialOut).build();
         } catch(InvalidCredentialsException e) {
-            return Response.status(e.getStatus()).entity(new DefaultErrorOut(e.getMessage())).build();
+            return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
         }
     }
 
@@ -50,7 +51,7 @@ public class LoginEndPoint {
             final CredentialOut credentialOut = loginService.doLoginByCredential(credentialIn);
             return Response.ok().entity(credentialOut).build();
         } catch(InvalidCredentialsException e) {
-            return Response.status(e.getStatus()).entity(new DefaultErrorOut(e.getMessage())).build();
+            return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
         }
     }
 }

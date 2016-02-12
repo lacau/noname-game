@@ -18,8 +18,8 @@ public class LoginEndPoint {
 
     @POST
     @Path("/token")
-    public Response byToken(@HeaderParam("auth_token") String authToken) {
-        if(authToken == null)
+    public Response byToken(@HeaderParam("auth_token") String authToken, @HeaderParam("auth_id") Long authId) {
+        if(authToken == null || authId == null)
             return Response.status(417).build();
         return Response.ok().build();
     }

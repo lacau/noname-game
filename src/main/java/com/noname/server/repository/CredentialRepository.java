@@ -4,7 +4,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import com.noname.server.entity.Credential;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by lacau on 12/02/16.
@@ -24,5 +27,10 @@ public class CredentialRepository {
         query.setParameter("login", login);
 
         return query.getSingleResult();
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void insert(Credential credential) {
+        entityManager.persist(credential);
     }
 }

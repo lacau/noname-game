@@ -32,10 +32,10 @@ public class AccountEndPoint {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createAccount(@Valid CredentialIn credentialIn) {
         try {
-            accountService.createAccount(credentialIn);
+            final CredentialOut account = accountService.createAccount(credentialIn);
+            return Response.ok(account).build();
         } catch(ResponseException e) {
             return Response.status(e.getStatus()).entity(new DefaultErrorOut(e.getMessage())).build();
         }
-        return Response.ok(new CredentialOut()).build();
     }
 }

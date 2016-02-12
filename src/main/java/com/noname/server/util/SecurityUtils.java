@@ -19,8 +19,12 @@ public class SecurityUtils {
         sb.append(":");
         sb.append(credential.getPassword());
 
-        byte[] bytes = generateSHA512(sb.toString());
+        byte[] bytes = encryptValue(sb.toString(), "SHA-512");
         return convertToHex(bytes);
+    }
+
+    public static String generateSHA256Password(String password) {
+        return convertToHex(encryptValue(password, "SHA-256"));
     }
 
     private static String convertToHex(byte[] raw) {
@@ -33,11 +37,11 @@ public class SecurityUtils {
         return sb.toString();
     }
 
-    private static byte[] generateSHA512(String value) {
+    private static byte[] encryptValue(String value, String algorithm) {
         MessageDigest md = null;
 
         try {
-            md = MessageDigest.getInstance("SHA-512");
+            md = MessageDigest.getInstance(algorithm);
         } catch(NoSuchAlgorithmException e) {
             e.printStackTrace();
         }

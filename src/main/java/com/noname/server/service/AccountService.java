@@ -2,6 +2,7 @@ package com.noname.server.service;
 
 import java.util.Calendar;
 
+import com.noname.server.adapter.CredentialAdapter;
 import com.noname.server.entity.Credential;
 import com.noname.server.exception.AccountAlreadyExistsException;
 import com.noname.server.json.CredentialIn;
@@ -20,6 +21,9 @@ public class AccountService {
     @Autowired
     private CredentialRepository credentialRepository;
 
+    @Autowired
+    private CredentialAdapter credentialAdapter;
+
     public CredentialOut createAccount(CredentialIn credentialIn) throws AccountAlreadyExistsException {
         final Long countByLogin = credentialRepository.findCountByLogin(credentialIn.getLogin());
         if(countByLogin != 0)
@@ -33,10 +37,6 @@ public class AccountService {
 
         credentialRepository.insert(credential);
 
-        CredentialOut credentialOut = new CredentialOut();
-        credentialOut.setToken(credential.getToken());
-        credentialOut.setId(credential.getCdId());
-
-        return credentialOut;
+        return credentialAdapter.adapt(credential);
     }
 }

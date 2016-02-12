@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class HeroRepository {
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     public Hero findById(Long id) {
         return entityManager.find(Hero.class, id);

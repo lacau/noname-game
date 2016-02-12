@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class CredentialRepository {
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     public Long findCountByLogin(String login) {
         StringBuilder hql = new StringBuilder();

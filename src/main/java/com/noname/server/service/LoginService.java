@@ -22,14 +22,12 @@ public class LoginService {
     @Autowired
     private CredentialAdapter credentialAdapter;
 
-    public CredentialOut doLoginByToken(Credential credential) throws InvalidCredentialsException {
+    public void doLoginByToken(Credential credential) throws InvalidCredentialsException {
         final Credential credentialDB = credentialRepository.findByIdAndToken(credential);
         if(credentialDB == null)
             throw new InvalidCredentialsException();
 
         // TODO: doLogin
-
-        return credentialAdapter.adapt(credentialDB);
     }
 
     public CredentialOut doLoginByCredential(CredentialIn credentialIn) throws InvalidCredentialsException {

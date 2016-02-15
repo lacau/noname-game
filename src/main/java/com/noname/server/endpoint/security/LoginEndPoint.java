@@ -37,8 +37,8 @@ public class LoginEndPoint {
         credential.setToken(authToken);
 
         try {
-            final CredentialOut credentialOut = loginService.doLoginByToken(credential);
-            return Response.ok().entity(credentialOut).build();
+            loginService.doLoginByToken(credential);
+            return Response.ok().build();
         } catch(InvalidCredentialsException e) {
             return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
         }

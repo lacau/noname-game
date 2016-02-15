@@ -19,6 +19,8 @@ public final class SecurityUtils {
         sb.append(credential.getLogin());
         sb.append(":");
         sb.append(credential.getPassword());
+        sb.append(":");
+        sb.append(System.currentTimeMillis());
 
         byte[] bytes = encryptValue(sb.toString(), "SHA-512");
         return convertToHex(bytes);

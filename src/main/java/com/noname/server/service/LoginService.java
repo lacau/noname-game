@@ -24,7 +24,7 @@ public class LoginService {
 
     public CredentialOut doLoginByToken(Credential credential) throws InvalidCredentialsException {
         final Credential credentialDB = credentialRepository.findByIdAndToken(credential);
-        if(credential == null)
+        if(credentialDB == null)
             throw new InvalidCredentialsException();
 
         // TODO: doLogin

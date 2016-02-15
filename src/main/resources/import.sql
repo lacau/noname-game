@@ -1,0 +1,1 @@
+INSERT INTO hero(st_name, nr_level) VALUES('lacau', 10);

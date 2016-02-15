@@ -5,8 +5,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.noname.server.entity.Hero;
+import com.noname.server.exception.HeroNotFoundException;
+import com.noname.server.json.DefaultErrorOut;
 import com.noname.server.service.HeroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,13 +27,23 @@ public class HeroEndPoint {
 
     @GET
     @Path("/{id}")
-    public Hero getHeroById(@PathParam("id") Long cdId) {
-        return service.findHeroById(cdId);
+    public Response getHeroById(@PathParam("id") Long cdId) {
+        try {
+            final Hero hero = service.findHeroById(cdId);
+            return Response.ok().entity(hero).build();
+        } catch(HeroNotFoundException e) {
+            return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
+        }
     }
 
     @GET
     @Path("/name/{name}")
-    public Hero getHeroByName(@PathParam("name") String name) {
-        return service.findHeroByName(name);
+    public Response getHeroByName(@PathParam("name") String name) {
+        try {
+            final Hero hero = service.findHeroByName(name);
+            return Response.ok().entity(hero).build();
+        } catch(HeroNotFoundException e) {
+            return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
+        }
     }
 }

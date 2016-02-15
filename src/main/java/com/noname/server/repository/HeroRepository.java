@@ -20,7 +20,11 @@ public class HeroRepository {
     private EntityManager entityManager;
 
     public Hero findById(Long id) {
-        return entityManager.find(Hero.class, id);
+        try {
+            return entityManager.find(Hero.class, id);
+        } catch(NoResultException e) {
+            return null;
+        }
     }
 
     public Hero findByName(String name) {
@@ -34,7 +38,7 @@ public class HeroRepository {
         try {
             return query.getSingleResult();
         } catch(NoResultException e) {
-            throw e;
+            return null;
         }
     }
 

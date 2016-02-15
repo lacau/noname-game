@@ -27,9 +27,8 @@
         <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
 
-    <!-- loading Spring Context for registering beans with ApplicationContext -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>WEB-INF/spring-context.xml</param-value>
+        <param-value>WEB-INF/spring-context-h2.xml</param-value>
     </context-param>
 </web-app>

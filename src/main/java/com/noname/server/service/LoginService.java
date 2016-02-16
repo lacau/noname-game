@@ -1,6 +1,7 @@
 package com.noname.server.service;
 
 import com.noname.server.adapter.CredentialAdapter;
+import com.noname.server.cache.CacheManager;
 import com.noname.server.entity.Credential;
 import com.noname.server.exception.InvalidCredentialsException;
 import com.noname.server.json.CredentialIn;
@@ -22,12 +23,15 @@ public class LoginService {
     @Autowired
     private CredentialAdapter credentialAdapter;
 
+    @Autowired
+    private CacheManager cacheManager;
+
     public void doLoginByToken(Credential credential) throws InvalidCredentialsException {
         final Credential credentialDB = credentialRepository.findByIdAndToken(credential);
         if(credentialDB == null)
             throw new InvalidCredentialsException();
 
-        // TODO: doLogin
+        cacheManager.store(credentialAdapter.adapt(credentialDB));
     }
 
     public CredentialOut doLoginByCredential(CredentialIn credentialIn) throws InvalidCredentialsException {
@@ -38,8 +42,10 @@ public class LoginService {
         if(credentialDB == null)
             throw new InvalidCredentialsException();
 
-        // TODO: doLogin
+        final CredentialOut credentialOut = credentialAdapter.adapt(credentialDB);
 
-        return credentialAdapter.adapt(credentialDB);
+        cacheManager.store(credentialOut);
+
+        return credentialOut;
     }
 }

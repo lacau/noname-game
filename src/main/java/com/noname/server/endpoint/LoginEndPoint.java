@@ -1,4 +1,4 @@
-package com.noname.server.endpoint.security;
+package com.noname.server.endpoint;
 
 import javax.validation.Valid;
 import javax.ws.rs.HeaderParam;

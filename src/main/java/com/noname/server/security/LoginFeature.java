@@ -1,10 +1,12 @@
-package com.noname.server.endpoint.security;
+package com.noname.server.security;
 
 import javax.ws.rs.container.DynamicFeature;
 import javax.ws.rs.container.ResourceInfo;
 import javax.ws.rs.core.FeatureContext;
 import javax.ws.rs.ext.Provider;
 
+import com.noname.server.endpoint.AccountEndPoint;
+import com.noname.server.endpoint.LoginEndPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

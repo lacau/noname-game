@@ -1,4 +1,4 @@
-package com.noname.server.endpoint.security;
+package com.noname.server.security;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.container.ContainerRequestContext;

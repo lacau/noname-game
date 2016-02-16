@@ -1,6 +1,5 @@
 package com.noname.server.cache;
 
-import com.noname.server.json.CredentialOut;
 import org.apache.jcs.JCS;
 import org.apache.jcs.access.exception.CacheException;
 import org.springframework.stereotype.Component;
@@ -21,15 +20,15 @@ public class CacheManager {
         }
     }
 
-    public void store(CredentialOut value) {
+    public void store(CredentialCache value) {
         try {
-            cache.put(value.getId(), value);
+            cache.put(value.id, value);
         } catch(CacheException e) {
             e.printStackTrace();
         }
     }
 
-    public CredentialOut retrieve(Long key) {
-        return (CredentialOut) cache.get(key);
+    public CredentialCache retrieve(Long key) {
+        return (CredentialCache) cache.get(key);
     }
 }

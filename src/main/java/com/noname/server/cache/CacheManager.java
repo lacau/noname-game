@@ -29,6 +29,7 @@ public class CacheManager {
     }
 
     public CredentialCache retrieve(Long key) {
-        return (CredentialCache) cache.get(key);
+        final Object value = cache.get(key);
+        return value != null ? (CredentialCache) value : null;
     }
 }

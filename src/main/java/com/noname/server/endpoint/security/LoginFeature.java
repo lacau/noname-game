@@ -5,16 +5,21 @@ import javax.ws.rs.container.ResourceInfo;
 import javax.ws.rs.core.FeatureContext;
 import javax.ws.rs.ext.Provider;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 /**
  * Created by lacau on 12/02/16.
  */
 @Provider
 public class LoginFeature implements DynamicFeature {
 
+    @Autowired
+    private LoginFilter loginFilter;
+
     @Override
     public void configure(ResourceInfo resourceInfo, FeatureContext context) {
         if(resourceShouldBeFiltered(resourceInfo))
-            context.register(new LoginFilter());
+            context.register(loginFilter);
     }
 
     private boolean resourceShouldBeFiltered(ResourceInfo resourceInfo) {

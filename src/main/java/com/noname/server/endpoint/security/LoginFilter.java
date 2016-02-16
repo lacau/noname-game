@@ -5,9 +5,12 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.Response;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by lacau on 12/02/16.
  */
+@Component
 public class LoginFilter implements ContainerRequestFilter {
 
     @Override

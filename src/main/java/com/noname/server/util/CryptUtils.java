@@ -8,10 +8,10 @@ import com.noname.server.entity.Credential;
 /**
  * Created by lacau on 12/02/16.
  */
-public final class SecurityUtils {
+public final class CryptUtils {
 
-    private SecurityUtils() {
-        throw new IllegalStateException("SecurityUtils class shouldn't be instantiated!");
+    private CryptUtils() {
+        throw new IllegalStateException("CryptUtils class shouldn't be instantiated!");
     }
 
     public static String generateToken(Credential credential) {

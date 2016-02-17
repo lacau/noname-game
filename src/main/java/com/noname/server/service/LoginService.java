@@ -50,4 +50,12 @@ public class LoginService {
 
         return credentialAdapter.adapt(credentialDB);
     }
+
+    public void doLogout(Credential credential) throws InvalidCredentialsException {
+        final Credential credentialDB = credentialRepository.findByIdAndToken(credential);
+        if(credentialDB == null)
+            throw new InvalidCredentialsException();
+
+        cacheManager.remove(credential.getCdId());
+    }
 }

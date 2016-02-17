@@ -32,4 +32,12 @@ public class CacheManager {
         final Object value = cache.get(key);
         return value != null ? (CredentialCache) value : null;
     }
+
+    public void remove(Long key) {
+        try {
+            cache.remove(key);
+        } catch(CacheException e) {
+            e.printStackTrace();
+        }
+    }
 }

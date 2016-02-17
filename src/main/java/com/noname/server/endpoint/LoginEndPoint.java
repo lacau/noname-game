@@ -54,4 +54,19 @@ public class LoginEndPoint {
             return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
         }
     }
+
+    @POST
+    @Path("/logout")
+    public Response logout(@HeaderParam("auth_token") String authToken, @HeaderParam("auth_id") Long authId) {
+        Credential credential = new Credential();
+        credential.setCdId(authId);
+        credential.setToken(authToken);
+
+        try {
+            loginService.doLogout(credential);
+            return Response.ok().build();
+        } catch(InvalidCredentialsException e) {
+            return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
+        }
+    }
 }

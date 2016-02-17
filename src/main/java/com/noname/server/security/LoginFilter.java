@@ -26,7 +26,14 @@ public class LoginFilter implements ContainerRequestFilter {
         if(authId == null || authToken == null)
             throw new WebApplicationException(Response.Status.UNAUTHORIZED);
 
-        final CredentialCache credentialCache = cacheManager.retrieve(Long.valueOf(authId));
+        long id;
+        try {
+            id = Long.valueOf(authId);
+        } catch(NumberFormatException e) {
+            throw new WebApplicationException(Response.Status.UNAUTHORIZED);
+        }
+
+        final CredentialCache credentialCache = cacheManager.retrieve(id);
         if(credentialCache == null || !credentialCache.token.equals(authToken))
             throw new WebApplicationException(Response.Status.UNAUTHORIZED);
     }

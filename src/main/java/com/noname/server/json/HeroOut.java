@@ -18,6 +18,8 @@ public class HeroOut implements Serializable {
 
     private List<SkillOut> skills;
 
+    private List<ItemOut> items;
+
     public Long getId() {
         return id;
     }
@@ -48,5 +50,13 @@ public class HeroOut implements Serializable {
 
     public void setSkills(List<SkillOut> skills) {
         this.skills = skills;
+    }
+
+    public List<ItemOut> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemOut> items) {
+        this.items = items;
     }
 }

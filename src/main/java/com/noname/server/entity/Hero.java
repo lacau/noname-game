@@ -1,11 +1,15 @@
 package com.noname.server.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  * Created by lacau on 28/01/16.
@@ -25,6 +29,13 @@ public class Hero implements Serializable {
 
     @Column(name = "nr_level")
     private Integer level;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_credential")
+    private Credential credential;
+
+    @OneToMany(mappedBy = "hero")
+    private List<HeroAchievement> heroAchievements;
 
     public Long getCdId() {
         return cdId;
@@ -48,5 +59,21 @@ public class Hero implements Serializable {
 
     public void setLevel(Integer level) {
         this.level = level;
+    }
+
+    public Credential getCredential() {
+        return credential;
+    }
+
+    public void setCredential(Credential credential) {
+        this.credential = credential;
+    }
+
+    public List<HeroAchievement> getHeroAchievements() {
+        return heroAchievements;
+    }
+
+    public void setHeroAchievements(List<HeroAchievement> heroAchievements) {
+        this.heroAchievements = heroAchievements;
     }
 }

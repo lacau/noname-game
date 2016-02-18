@@ -1,5 +1,7 @@
 package com.noname.server.repository;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -39,6 +41,22 @@ public class HeroRepository {
             return query.getSingleResult();
         } catch(NoResultException e) {
             return null;
+        }
+    }
+
+    public List<Hero> listHero(Long credentialId) {
+        StringBuilder hql = new StringBuilder();
+        hql.append("SELECT hero FROM Hero hero ");
+        hql.append("JOIN hero.credential credential ");
+        hql.append("WHERE credential.id = :credentialId");
+
+        final TypedQuery<Hero> query = entityManager.createQuery(hql.toString(), Hero.class);
+        query.setParameter("credentialId", credentialId);
+
+        try {
+            return query.getResultList();
+        } catch(NoResultException e) {
+            return new ArrayList<Hero>();
         }
     }
 

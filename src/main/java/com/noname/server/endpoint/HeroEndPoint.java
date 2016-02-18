@@ -1,6 +1,8 @@
 package com.noname.server.endpoint;
 
+import java.util.List;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -45,5 +47,12 @@ public class HeroEndPoint {
         } catch(HeroNotFoundException e) {
             return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
         }
+    }
+
+    @GET
+    @Path("/list")
+    public Response getHeroList(@HeaderParam("auth_id") Long authId) {
+        final List<Hero> heros = service.listHero(authId);
+        return Response.ok(heros).build();
     }
 }

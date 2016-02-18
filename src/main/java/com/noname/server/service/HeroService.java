@@ -1,5 +1,7 @@
 package com.noname.server.service;
 
+import java.util.List;
+
 import com.noname.server.entity.Hero;
 import com.noname.server.exception.HeroNotFoundException;
 import com.noname.server.repository.HeroRepository;
@@ -29,5 +31,9 @@ public class HeroService {
             throw new HeroNotFoundException();
 
         return hero;
+    }
+
+    public List<Hero> listHero(Long credentialId) {
+        return heroRepository.listHero(credentialId);
     }
 }

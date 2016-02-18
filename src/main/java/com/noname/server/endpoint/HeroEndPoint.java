@@ -1,8 +1,10 @@
 package com.noname.server.endpoint;
 
 import java.util.List;
+import javax.validation.Valid;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -11,9 +13,12 @@ import javax.ws.rs.core.Response;
 
 import com.noname.server.entity.Hero;
 import com.noname.server.exception.HeroNotFoundException;
+import com.noname.server.exception.ResponseException;
 import com.noname.server.json.DefaultErrorOut;
+import com.noname.server.json.HeroIn;
 import com.noname.server.service.HeroService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 /**
@@ -25,13 +30,24 @@ import org.springframework.stereotype.Component;
 public class HeroEndPoint {
 
     @Autowired
-    private HeroService service;
+    private HeroService heroService;
+
+    @POST
+    @Path("/create")
+    public Response createHero(@Valid HeroIn heroIn, @HeaderParam("auth_id") Long authId) {
+        try {
+            final Hero hero = heroService.createHero(heroIn, authId);
+            return Response.status(HttpStatus.CREATED.value()).entity(hero).build();
+        } catch(ResponseException e) {
+            return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
+        }
+    }
 
     @GET
     @Path("/{id}")
     public Response getHeroById(@PathParam("id") Long cdId) {
         try {
-            final Hero hero = service.findHeroById(cdId);
+            final Hero hero = heroService.findHeroById(cdId);
             return Response.ok().entity(hero).build();
         } catch(HeroNotFoundException e) {
             return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
@@ -42,7 +58,7 @@ public class HeroEndPoint {
     @Path("/name/{name}")
     public Response getHeroByName(@PathParam("name") String name) {
         try {
-            final Hero hero = service.findHeroByName(name);
+            final Hero hero = heroService.findHeroByName(name);
             return Response.ok().entity(hero).build();
         } catch(HeroNotFoundException e) {
             return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
@@ -52,7 +68,7 @@ public class HeroEndPoint {
     @GET
     @Path("/list")
     public Response getHeroList(@HeaderParam("auth_id") Long authId) {
-        final List<Hero> heros = service.listHero(authId);
+        final List<Hero> heros = heroService.listHero(authId);
         return Response.ok(heros).build();
     }
 }

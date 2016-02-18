@@ -44,6 +44,17 @@ public class HeroRepository {
         }
     }
 
+    public Long findCountByName(String name) {
+        StringBuilder hql = new StringBuilder();
+        hql.append("SELECT count(hero.id) FROM Hero hero ");
+        hql.append("WHERE hero.name = :name");
+
+        final TypedQuery<Long> query = entityManager.createQuery(hql.toString(), Long.class);
+        query.setParameter("login", name);
+
+        return query.getSingleResult();
+    }
+
     public List<Hero> listHero(Long credentialId) {
         StringBuilder hql = new StringBuilder();
         hql.append("SELECT hero FROM Hero hero ");

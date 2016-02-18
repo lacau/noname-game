@@ -14,6 +14,7 @@ import com.noname.server.json.CredentialOut;
 import com.noname.server.json.DefaultErrorOut;
 import com.noname.server.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 /**
@@ -33,7 +34,7 @@ public class AccountEndPoint {
     public Response createAccount(@Valid CredentialIn credentialIn) {
         try {
             final CredentialOut account = accountService.createAccount(credentialIn);
-            return Response.ok(account).build();
+            return Response.status(HttpStatus.CREATED.value()).entity(account).build();
         } catch(ResponseException e) {
             return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
         }

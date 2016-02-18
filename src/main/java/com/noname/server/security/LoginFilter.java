@@ -5,8 +5,6 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.Response;
 
-import com.noname.server.cache.CacheManager;
-import com.noname.server.cache.CredentialCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class LoginFilter implements ContainerRequestFilter {
 
     @Autowired
-    private CacheManager cacheManager;
+    private CredentialValidator credentialValidator;
 
     @Override
     public void filter(ContainerRequestContext requestContext) throws WebApplicationException {
@@ -26,15 +24,7 @@ public class LoginFilter implements ContainerRequestFilter {
         if(authId == null || authToken == null)
             throw new WebApplicationException(Response.Status.UNAUTHORIZED);
 
-        long id;
-        try {
-            id = Long.valueOf(authId);
-        } catch(NumberFormatException e) {
-            throw new WebApplicationException(Response.Status.UNAUTHORIZED);
-        }
-
-        final CredentialCache credentialCache = cacheManager.retrieve(id);
-        if(credentialCache == null || !credentialCache.token.equals(authToken))
+        if(!credentialValidator.isCredentialValid(authId, authToken))
             throw new WebApplicationException(Response.Status.UNAUTHORIZED);
     }
 }

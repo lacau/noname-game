@@ -1,6 +1,7 @@
 package com.noname.server.json;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by lacau on 18/02/16.
@@ -14,6 +15,8 @@ public class HeroOut implements Serializable {
     private String name;
 
     private Integer level;
+
+    private List<SkillOut> skills;
 
     public Long getId() {
         return id;
@@ -37,5 +40,13 @@ public class HeroOut implements Serializable {
 
     public void setLevel(Integer level) {
         this.level = level;
+    }
+
+    public List<SkillOut> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<SkillOut> skills) {
+        this.skills = skills;
     }
 }

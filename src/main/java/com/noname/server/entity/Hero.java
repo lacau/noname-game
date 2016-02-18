@@ -35,6 +35,12 @@ public class Hero implements Serializable {
     private Credential credential;
 
     @OneToMany(mappedBy = "hero")
+    private List<HeroSkill> heroSkills;
+
+    @OneToMany(mappedBy = "hero")
+    private List<HeroItem> heroItems;
+
+    @OneToMany(mappedBy = "hero")
     private List<HeroAchievement> heroAchievements;
 
     public Long getCdId() {
@@ -67,6 +73,22 @@ public class Hero implements Serializable {
 
     public void setCredential(Credential credential) {
         this.credential = credential;
+    }
+
+    public List<HeroSkill> getHeroSkills() {
+        return heroSkills;
+    }
+
+    public void setHeroSkills(List<HeroSkill> heroSkills) {
+        this.heroSkills = heroSkills;
+    }
+
+    public List<HeroItem> getHeroItems() {
+        return heroItems;
+    }
+
+    public void setHeroItems(List<HeroItem> heroItems) {
+        this.heroItems = heroItems;
     }
 
     public List<HeroAchievement> getHeroAchievements() {

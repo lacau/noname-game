@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * Created by Lacau on 04/02/2016.
@@ -25,6 +27,14 @@ public class HeroSkill implements Serializable {
 
     @Column(name = "nr_selected")
     private Boolean selected;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_hero")
+    private Hero hero;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_skill")
+    private Skill skill;
 
     public Long getCdId() {
         return cdId;
@@ -48,5 +58,21 @@ public class HeroSkill implements Serializable {
 
     public void setSelected(Boolean selected) {
         this.selected = selected;
+    }
+
+    public Hero getHero() {
+        return hero;
+    }
+
+    public void setHero(Hero hero) {
+        this.hero = hero;
+    }
+
+    public Skill getSkill() {
+        return skill;
+    }
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
     }
 }

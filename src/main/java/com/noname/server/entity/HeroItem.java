@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * Created by Lacau on 04/02/2016.
@@ -20,11 +22,35 @@ public class HeroItem implements Serializable {
     @Column(name = "cd_id")
     private Long cdId;
 
+    @ManyToOne
+    @JoinColumn(name = "fk_hero")
+    private Hero hero;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_item")
+    private Item item;
+
     public Long getCdId() {
         return cdId;
     }
 
     public void setCdId(Long cdId) {
         this.cdId = cdId;
+    }
+
+    public Hero getHero() {
+        return hero;
+    }
+
+    public void setHero(Hero hero) {
+        this.hero = hero;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 }

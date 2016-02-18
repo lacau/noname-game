@@ -10,6 +10,9 @@ import com.noname.server.entity.Credential;
  */
 public final class CryptUtils {
 
+    private static final String SHA_256 = "SHA-256";
+    private static final String SHA_512 = "SHA-512";
+
     private CryptUtils() {
         throw new IllegalStateException("CryptUtils class shouldn't be instantiated!");
     }
@@ -22,12 +25,12 @@ public final class CryptUtils {
         sb.append(":");
         sb.append(System.currentTimeMillis());
 
-        byte[] bytes = encryptValue(sb.toString(), "SHA-512");
+        byte[] bytes = encryptValue(sb.toString(), SHA_512);
         return convertToHex(bytes);
     }
 
     public static String generateSHA256Password(String password) {
-        return convertToHex(encryptValue(password, "SHA-256"));
+        return convertToHex(encryptValue(password, SHA_256));
     }
 
     private static String convertToHex(byte[] raw) {

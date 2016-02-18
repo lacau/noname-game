@@ -9,6 +9,7 @@ import com.noname.server.entity.HeroSkill;
 import com.noname.server.json.HeroOut;
 import com.noname.server.json.ItemOut;
 import com.noname.server.json.SkillOut;
+import org.hibernate.proxy.HibernateProxy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,7 +24,7 @@ public class HeroAdapter {
         heroOut.setName(hero.getName());
         heroOut.setLevel(hero.getLevel());
 
-        if(hero.getHeroSkills() != null) {
+        if(HibernateProxy.class.isInstance(hero.getHeroSkills())) {
             List<SkillOut> skills = new ArrayList<SkillOut>();
             for(HeroSkill hs : hero.getHeroSkills()) {
                 SkillOut skill = new SkillOut();
@@ -36,7 +37,7 @@ public class HeroAdapter {
             heroOut.setSkills(skills);
         }
 
-        if(hero.getHeroItems() != null) {
+        if(HibernateProxy.class.isInstance(hero.getHeroItems())) {
             List<ItemOut> items = new ArrayList<ItemOut>();
             for(HeroItem hi : hero.getHeroItems()) {
                 ItemOut item = new ItemOut();

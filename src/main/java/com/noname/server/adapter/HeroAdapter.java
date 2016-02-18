@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.noname.server.entity.Hero;
+import com.noname.server.entity.HeroItem;
 import com.noname.server.entity.HeroSkill;
 import com.noname.server.json.HeroOut;
+import com.noname.server.json.ItemOut;
 import com.noname.server.json.SkillOut;
 import org.springframework.stereotype.Component;
 
@@ -32,6 +34,17 @@ public class HeroAdapter {
                 skills.add(skill);
             }
             heroOut.setSkills(skills);
+        }
+
+        if(hero.getHeroItems() != null) {
+            List<ItemOut> items = new ArrayList<ItemOut>();
+            for(HeroItem hi : hero.getHeroItems()) {
+                ItemOut item = new ItemOut();
+                item.setName(hi.getItem().getName());
+                item.setDescription(hi.getItem().getDescription());
+                items.add(item);
+            }
+            heroOut.setItems(items);
         }
 
         return heroOut;

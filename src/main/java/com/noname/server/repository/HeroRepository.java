@@ -50,7 +50,7 @@ public class HeroRepository {
         hql.append("WHERE hero.name = :name");
 
         final TypedQuery<Long> query = entityManager.createQuery(hql.toString(), Long.class);
-        query.setParameter("login", name);
+        query.setParameter("name", name);
 
         return query.getSingleResult();
     }
@@ -74,10 +74,5 @@ public class HeroRepository {
     @Transactional(propagation = Propagation.REQUIRED)
     public void insert(Hero hero) {
         entityManager.persist(hero);
-    }
-
-    @Transactional(propagation = Propagation.REQUIRED)
-    public void update(Hero hero) {
-        entityManager.merge(hero);
     }
 }

@@ -2,13 +2,11 @@ package com.noname.server.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -37,9 +35,6 @@ public class Credential implements Serializable {
     @Column(name = "dt_token")
     @Temporal(TemporalType.TIMESTAMP)
     private Date tokenDate;
-
-    @OneToMany(mappedBy = "credential")
-    private List<Hero> heros;
 
     public Long getCdId() {
         return cdId;
@@ -79,13 +74,5 @@ public class Credential implements Serializable {
 
     public void setTokenDate(Date tokenDate) {
         this.tokenDate = tokenDate;
-    }
-
-    public List<Hero> getHeros() {
-        return heros;
-    }
-
-    public void setHeros(List<Hero> heros) {
-        this.heros = heros;
     }
 }

@@ -19,6 +19,14 @@ public class CredentialRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
+    public Credential findById(Long id) {
+        try {
+            return entityManager.find(Credential.class, id);
+        } catch(NoResultException e) {
+            return null;
+        }
+    }
+
     public Long findCountByLogin(String login) {
         StringBuilder hql = new StringBuilder();
         hql.append("SELECT count(credential.id) FROM Credential credential ");

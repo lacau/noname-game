@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  * Created by lacau on 28/01/16.
@@ -34,6 +36,10 @@ public class Profile implements Serializable {
 
     @Column(name = "nr_battle")
     private Integer battles;
+
+    @OneToOne
+    @JoinColumn(name = "fk_hero")
+    private Hero hero;
 
     public Long getCdId() {
         return cdId;
@@ -81,5 +87,13 @@ public class Profile implements Serializable {
 
     public void setBattles(Integer battles) {
         this.battles = battles;
+    }
+
+    public Hero getHero() {
+        return hero;
+    }
+
+    public void setHero(Hero hero) {
+        this.hero = hero;
     }
 }

@@ -9,12 +9,14 @@ import com.noname.server.adapter.HeroBasicAdapter;
 import com.noname.server.entity.Credential;
 import com.noname.server.entity.Hero;
 import com.noname.server.entity.HeroSkill;
+import com.noname.server.entity.Profile;
 import com.noname.server.entity.Skill;
 import com.noname.server.exception.HeroNotFoundException;
 import com.noname.server.exception.ResourceAlreadyExistsException;
 import com.noname.server.json.HeroIn;
 import com.noname.server.json.HeroOut;
 import com.noname.server.repository.HeroRepository;
+import com.noname.server.repository.ProfileRepository;
 import com.noname.server.repository.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +34,9 @@ public class HeroService {
 
     @Autowired
     private SkillRepository skillRepository;
+
+    @Autowired
+    private ProfileRepository profileRepository;
 
     @Autowired
     private HeroAdapter heroAdapter;
@@ -80,6 +85,11 @@ public class HeroService {
             heroSkills.add(new HeroSkill(hero, skill, startLevel));
 
         heroRepository.insert(hero);
+
+        Profile profile = new Profile();
+        profile.setHero(hero);
+
+        profileRepository.insert(profile);
 
         return heroBasicAdapter.adapt(hero);
     }

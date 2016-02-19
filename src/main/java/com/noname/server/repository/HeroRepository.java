@@ -24,6 +24,10 @@ public class HeroRepository {
     public Hero findById(Long id, Long credentialId) {
         StringBuilder hql = new StringBuilder();
         hql.append("SELECT hero FROM Hero hero ");
+        hql.append("JOIN FETCH hero.heroSkills heroSkills ");
+        hql.append("JOIN FETCH heroSkills.skill skill ");
+        hql.append("LEFT JOIN FETCH hero.heroItems heroItems ");
+        hql.append("LEFT JOIN FETCH heroItems.item item ");
         hql.append("JOIN hero.credential credential ");
         hql.append("WHERE credential.id = :credentialId ");
         hql.append("AND hero.id = :heroId");

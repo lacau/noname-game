@@ -9,7 +9,7 @@ import com.noname.server.entity.HeroSkill;
 import com.noname.server.json.HeroOut;
 import com.noname.server.json.ItemOut;
 import com.noname.server.json.SkillOut;
-import org.hibernate.proxy.HibernateProxy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,13 +18,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class HeroAdapter {
 
-    public HeroOut adapt(Hero hero) {
-        HeroOut heroOut = new HeroOut();
-        heroOut.setId(hero.getCdId());
-        heroOut.setName(hero.getName());
-        heroOut.setLevel(hero.getLevel());
+    @Autowired
+    private HeroBasicAdapter heroBasicAdapter;
 
-        if(HibernateProxy.class.isInstance(hero.getHeroSkills())) {
+    public HeroOut adapt(Hero hero) {
+        HeroOut heroOut = heroBasicAdapter.adapt(hero);
+
+        if(hero.getHeroSkills() != null) {
             List<SkillOut> skills = new ArrayList<SkillOut>();
             for(HeroSkill hs : hero.getHeroSkills()) {
                 SkillOut skill = new SkillOut();
@@ -37,7 +37,7 @@ public class HeroAdapter {
             heroOut.setSkills(skills);
         }
 
-        if(HibernateProxy.class.isInstance(hero.getHeroItems())) {
+        if(hero.getHeroItems() != null) {
             List<ItemOut> items = new ArrayList<ItemOut>();
             for(HeroItem hi : hero.getHeroItems()) {
                 ItemOut item = new ItemOut();
@@ -49,13 +49,5 @@ public class HeroAdapter {
         }
 
         return heroOut;
-    }
-
-    public List<HeroOut> adapt(List<Hero> heros) {
-        List<HeroOut> listHero = new ArrayList<HeroOut>();
-        for(Hero h : heros)
-            listHero.add(adapt(h));
-
-        return listHero;
     }
 }

@@ -1,9 +1,11 @@
 package com.noname.server.service;
 
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.noname.server.adapter.HeroAdapter;
+import com.noname.server.adapter.HeroBasicAdapter;
 import com.noname.server.entity.Credential;
 import com.noname.server.entity.Hero;
 import com.noname.server.entity.HeroSkill;
@@ -34,6 +36,9 @@ public class HeroService {
     @Autowired
     private HeroAdapter heroAdapter;
 
+    @Autowired
+    private HeroBasicAdapter heroBasicAdapter;
+
     public HeroOut findHeroById(Long cdId, Long credentialId) throws HeroNotFoundException {
         final Hero hero = heroRepository.findById(cdId, credentialId);
         if(hero == null)
@@ -47,11 +52,11 @@ public class HeroService {
         if(hero == null)
             throw new HeroNotFoundException();
 
-        return heroAdapter.adapt(hero);
+        return heroBasicAdapter.adapt(hero);
     }
 
     public List<HeroOut> listHero(Long credentialId) {
-        return heroAdapter.adapt(heroRepository.listHero(credentialId));
+        return heroBasicAdapter.adapt(heroRepository.listHero(credentialId));
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -62,10 +67,7 @@ public class HeroService {
 
         final int startLevel = 1;
         final List<Skill> skills = skillRepository.listAll();
-        List<HeroSkill> heroSkills = new ArrayList<HeroSkill>();
-
-        for(Skill skill : skills)
-            heroSkills.add(new HeroSkill(skill, startLevel));
+        Set<HeroSkill> heroSkills = new LinkedHashSet<HeroSkill>();
 
         Hero hero = new Hero();
         hero.setCredential(new Credential());
@@ -74,8 +76,11 @@ public class HeroService {
         hero.setLevel(startLevel);
         hero.setHeroSkills(heroSkills);
 
+        for(Skill skill : skills)
+            heroSkills.add(new HeroSkill(hero, skill, startLevel));
+
         heroRepository.insert(hero);
 
-        return heroAdapter.adapt(hero);
+        return heroBasicAdapter.adapt(hero);
     }
 }

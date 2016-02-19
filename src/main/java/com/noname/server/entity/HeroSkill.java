@@ -39,7 +39,8 @@ public class HeroSkill implements Serializable {
     public HeroSkill() {
     }
 
-    public HeroSkill(Skill skill, Integer level) {
+    public HeroSkill(Hero hero, Skill skill, Integer level) {
+        this.hero = hero;
         this.skill = skill;
         this.level = level;
     }

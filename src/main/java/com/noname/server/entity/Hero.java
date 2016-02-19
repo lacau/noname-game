@@ -1,7 +1,7 @@
 package com.noname.server.entity;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 /**
  * Created by lacau on 28/01/16.
@@ -36,13 +37,14 @@ public class Hero implements Serializable {
     private Credential credential;
 
     @OneToMany(mappedBy = "hero", cascade = CascadeType.ALL)
-    private List<HeroSkill> heroSkills;
+    @OrderBy(value = "cdId")
+    private Set<HeroSkill> heroSkills;
 
     @OneToMany(mappedBy = "hero")
-    private List<HeroItem> heroItems;
+    private Set<HeroItem> heroItems;
 
     @OneToMany(mappedBy = "hero")
-    private List<HeroAchievement> heroAchievements;
+    private Set<HeroAchievement> heroAchievements;
 
     public Long getCdId() {
         return cdId;
@@ -76,27 +78,27 @@ public class Hero implements Serializable {
         this.credential = credential;
     }
 
-    public List<HeroSkill> getHeroSkills() {
+    public Set<HeroSkill> getHeroSkills() {
         return heroSkills;
     }
 
-    public void setHeroSkills(List<HeroSkill> heroSkills) {
+    public void setHeroSkills(Set<HeroSkill> heroSkills) {
         this.heroSkills = heroSkills;
     }
 
-    public List<HeroItem> getHeroItems() {
+    public Set<HeroItem> getHeroItems() {
         return heroItems;
     }
 
-    public void setHeroItems(List<HeroItem> heroItems) {
+    public void setHeroItems(Set<HeroItem> heroItems) {
         this.heroItems = heroItems;
     }
 
-    public List<HeroAchievement> getHeroAchievements() {
+    public Set<HeroAchievement> getHeroAchievements() {
         return heroAchievements;
     }
 
-    public void setHeroAchievements(List<HeroAchievement> heroAchievements) {
+    public void setHeroAchievements(Set<HeroAchievement> heroAchievements) {
         this.heroAchievements = heroAchievements;
     }
 }

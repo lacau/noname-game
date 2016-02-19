@@ -2,6 +2,7 @@ package com.noname.server.endpoint;
 
 import java.util.List;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
@@ -36,7 +37,7 @@ public class HeroEndPoint {
     @POST
     @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createHero(@Valid HeroIn heroIn, @HeaderParam("auth_id") Long authId) {
+    public Response createHero(@Valid @NotNull HeroIn heroIn, @HeaderParam("auth_id") Long authId) {
         try {
             final HeroOut heroOut = heroService.createHero(heroIn, authId);
             return Response.status(HttpStatus.CREATED.value()).entity(heroOut).build();

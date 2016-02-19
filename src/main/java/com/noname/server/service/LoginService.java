@@ -1,5 +1,7 @@
 package com.noname.server.service;
 
+import java.util.Calendar;
+
 import com.noname.server.adapter.CredentialAdapter;
 import com.noname.server.adapter.CredentialCacheAdapter;
 import com.noname.server.cache.CacheManager;
@@ -8,9 +10,12 @@ import com.noname.server.exception.InvalidCredentialsException;
 import com.noname.server.json.CredentialIn;
 import com.noname.server.json.CredentialOut;
 import com.noname.server.repository.CredentialRepository;
+import com.noname.server.security.CredentialValidator;
 import com.noname.server.util.CryptUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by lacau on 12/02/16.
@@ -30,6 +35,9 @@ public class LoginService {
     @Autowired
     private CacheManager cacheManager;
 
+    @Autowired
+    private CredentialValidator credentialValidator;
+
     public void doLoginByToken(Credential credential) throws InvalidCredentialsException {
         final Credential credentialDB = credentialRepository.findByIdAndToken(credential);
         if(credentialDB == null)
@@ -38,13 +46,20 @@ public class LoginService {
         cacheManager.store(credentialCacheAdapter.adapt(credentialDB));
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     public CredentialOut doLoginByCredential(CredentialIn credentialIn) throws InvalidCredentialsException {
         Credential credential = new Credential();
         credential.setLogin(credentialIn.getLogin());
         credential.setPassword(CryptUtils.generateSHA256Password(credentialIn.getPassword()));
-        final Credential credentialDB = credentialRepository.findByLoginAndPassword(credential);
+        Credential credentialDB = credentialRepository.findByLoginAndPassword(credential);
         if(credentialDB == null)
             throw new InvalidCredentialsException();
+
+        if(!credentialValidator.isValidToken(credentialDB.getTokenDate().getTime())) {
+            credentialDB.setToken(CryptUtils.generateToken(credentialDB));
+            credentialDB.setTokenDate(Calendar.getInstance().getTime());
+            credentialDB = credentialRepository.update(credentialDB);
+        }
 
         cacheManager.store(credentialCacheAdapter.adapt(credentialDB));
 

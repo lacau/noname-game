@@ -57,9 +57,9 @@ public class CredentialRepository {
 
     public Credential findByLoginAndPassword(Credential credential) {
         StringBuilder hql = new StringBuilder();
-        hql.append("SELECT count(credential.id) FROM Credential credential ");
-        hql.append("WHERE credential.login = :login");
-        hql.append("WHERE credential.password = :password");
+        hql.append("SELECT credential FROM Credential credential ");
+        hql.append("WHERE credential.login = :login ");
+        hql.append("AND credential.password = :password");
 
         final TypedQuery<Credential> query = entityManager.createQuery(hql.toString(), Credential.class);
         query.setParameter("login", credential.getLogin());
@@ -75,5 +75,10 @@ public class CredentialRepository {
     @Transactional(propagation = Propagation.REQUIRED)
     public void insert(Credential credential) {
         entityManager.persist(credential);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Credential update(Credential credential) {
+        return entityManager.merge(credential);
     }
 }

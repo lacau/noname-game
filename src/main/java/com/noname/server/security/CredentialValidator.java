@@ -29,6 +29,10 @@ public class CredentialValidator {
         if(credentialCache == null || !credentialCache.token.equals(authToken))
             return false;
 
-        return credentialCache.tokenDate < System.currentTimeMillis() + TOKEN_LIVE;
+        return isValidToken(credentialCache.tokenDate);
+    }
+
+    public boolean isValidToken(Long tokenDate) {
+        return System.currentTimeMillis() < tokenDate + TOKEN_LIVE;
     }
 }

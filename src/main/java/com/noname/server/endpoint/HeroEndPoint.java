@@ -47,9 +47,9 @@ public class HeroEndPoint {
 
     @GET
     @Path("/{id}")
-    public Response getHeroById(@PathParam("id") Long cdId) {
+    public Response getHeroById(@PathParam("id") Long cdId, @HeaderParam("auth_id") Long authId) {
         try {
-            final HeroOut heroOut = heroService.findHeroById(cdId);
+            final HeroOut heroOut = heroService.findHeroById(cdId, authId);
             return Response.ok().entity(heroOut).build();
         } catch(HeroNotFoundException e) {
             return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();

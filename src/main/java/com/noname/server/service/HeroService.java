@@ -27,8 +27,8 @@ public class HeroService {
     @Autowired
     private HeroAdapter heroAdapter;
 
-    public HeroOut findHeroById(Long cdId) throws HeroNotFoundException {
-        final Hero hero = heroRepository.findById(cdId);
+    public HeroOut findHeroById(Long cdId, Long credentialId) throws HeroNotFoundException {
+        final Hero hero = heroRepository.findById(cdId, credentialId);
         if(hero == null)
             throw new HeroNotFoundException();
 

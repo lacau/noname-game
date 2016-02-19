@@ -21,9 +21,19 @@ public class HeroRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public Hero findById(Long id) {
+    public Hero findById(Long id, Long credentialId) {
+        StringBuilder hql = new StringBuilder();
+        hql.append("SELECT hero FROM Hero hero ");
+        hql.append("JOIN hero.credential credential ");
+        hql.append("WHERE credential.id = :credentialId ");
+        hql.append("AND hero.id = :heroId");
+
+        final TypedQuery<Hero> query = entityManager.createQuery(hql.toString(), Hero.class);
+        query.setParameter("credentialId", credentialId);
+        query.setParameter("heroId", id);
+
         try {
-            return entityManager.find(Hero.class, id);
+            return query.getSingleResult();
         } catch(NoResultException e) {
             return null;
         }

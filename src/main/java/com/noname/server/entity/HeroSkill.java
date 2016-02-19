@@ -36,6 +36,14 @@ public class HeroSkill implements Serializable {
     @JoinColumn(name = "fk_skill")
     private Skill skill;
 
+    public HeroSkill() {
+    }
+
+    public HeroSkill(Skill skill, Integer level) {
+        this.skill = skill;
+        this.level = level;
+    }
+
     public Long getCdId() {
         return cdId;
     }

@@ -1,15 +1,19 @@
 package com.noname.server.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.noname.server.adapter.HeroAdapter;
 import com.noname.server.entity.Credential;
 import com.noname.server.entity.Hero;
+import com.noname.server.entity.HeroSkill;
+import com.noname.server.entity.Skill;
 import com.noname.server.exception.HeroNotFoundException;
 import com.noname.server.exception.ResourceAlreadyExistsException;
 import com.noname.server.json.HeroIn;
 import com.noname.server.json.HeroOut;
 import com.noname.server.repository.HeroRepository;
+import com.noname.server.repository.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -23,6 +27,9 @@ public class HeroService {
 
     @Autowired
     private HeroRepository heroRepository;
+
+    @Autowired
+    private SkillRepository skillRepository;
 
     @Autowired
     private HeroAdapter heroAdapter;
@@ -53,11 +60,19 @@ public class HeroService {
         if(countByName != 0)
             throw new ResourceAlreadyExistsException();
 
+        final int startLevel = 1;
+        final List<Skill> skills = skillRepository.listAll();
+        List<HeroSkill> heroSkills = new ArrayList<HeroSkill>();
+
+        for(Skill skill : skills)
+            heroSkills.add(new HeroSkill(skill, startLevel));
+
         Hero hero = new Hero();
         hero.setCredential(new Credential());
         hero.getCredential().setCdId(authId);
         hero.setName(heroIn.getName());
-        hero.setLevel(1);
+        hero.setLevel(startLevel);
+        hero.setHeroSkills(heroSkills);
 
         heroRepository.insert(hero);
 

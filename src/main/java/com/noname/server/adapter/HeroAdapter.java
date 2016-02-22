@@ -21,16 +21,16 @@ public class HeroAdapter {
     @Autowired
     private HeroBasicAdapter heroBasicAdapter;
 
+    @Autowired
+    private SkillAdapter skillAdapter;
+
     public HeroOut adapt(Hero hero) {
         HeroOut heroOut = heroBasicAdapter.adapt(hero);
 
         if(hero.getHeroSkills() != null) {
             List<SkillOut> skills = new ArrayList<SkillOut>();
             for(HeroSkill hs : hero.getHeroSkills()) {
-                SkillOut skill = new SkillOut();
-                skill.setName(hs.getSkill().getName());
-                skill.setDescription(hs.getSkill().getDescription());
-                skill.setPower(hs.getSkill().getPower());
+                SkillOut skill = skillAdapter.adapt(hs.getSkill());
                 skill.setLevel(hs.getLevel());
                 skills.add(skill);
             }

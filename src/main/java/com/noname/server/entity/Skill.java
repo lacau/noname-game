@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.noname.server.enums.SkillType;
+
 /**
  * Created by lacau on 28/01/16.
  */
@@ -28,6 +30,9 @@ public class Skill implements Serializable {
 
     @Column(name = "nr_power")
     private Integer power;
+
+    @Column(name = "st_type")
+    private SkillType type;
 
     public Long getCdId() {
         return cdId;
@@ -59,5 +64,13 @@ public class Skill implements Serializable {
 
     public void setPower(Integer power) {
         this.power = power;
+    }
+
+    public SkillType getType() {
+        return type;
+    }
+
+    public void setType(SkillType type) {
+        this.type = type;
     }
 }

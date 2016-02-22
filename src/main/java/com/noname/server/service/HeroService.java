@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.noname.server.adapter.HeroAdapter;
 import com.noname.server.adapter.HeroBasicAdapter;
+import com.noname.server.adapter.ProfileAdapter;
 import com.noname.server.entity.Credential;
 import com.noname.server.entity.Hero;
 import com.noname.server.entity.HeroSkill;
@@ -15,6 +16,7 @@ import com.noname.server.exception.HeroNotFoundException;
 import com.noname.server.exception.ResourceAlreadyExistsException;
 import com.noname.server.json.HeroIn;
 import com.noname.server.json.HeroOut;
+import com.noname.server.json.ProfileOut;
 import com.noname.server.repository.HeroRepository;
 import com.noname.server.repository.ProfileRepository;
 import com.noname.server.repository.SkillRepository;
@@ -43,6 +45,9 @@ public class HeroService {
 
     @Autowired
     private HeroBasicAdapter heroBasicAdapter;
+
+    @Autowired
+    private ProfileAdapter profileAdapter;
 
     public HeroOut findHeroById(Long cdId, Long credentialId) throws HeroNotFoundException {
         final Hero hero = heroRepository.findById(cdId, credentialId);
@@ -92,5 +97,13 @@ public class HeroService {
         profileRepository.insert(profile);
 
         return heroBasicAdapter.adapt(hero);
+    }
+
+    public ProfileOut findProfileByHeroId(Long cdId) throws HeroNotFoundException {
+        final Profile profile = profileRepository.findByHeroId(cdId);
+        if(profile == null)
+            throw new HeroNotFoundException();
+
+        return profileAdapter.adapt(profile);
     }
 }

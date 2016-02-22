@@ -18,6 +18,7 @@ import com.noname.server.exception.ResponseException;
 import com.noname.server.json.DefaultErrorOut;
 import com.noname.server.json.HeroIn;
 import com.noname.server.json.HeroOut;
+import com.noname.server.json.ProfileOut;
 import com.noname.server.service.HeroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -73,5 +74,16 @@ public class HeroEndPoint {
     public Response getHeroList(@HeaderParam("auth_id") Long authId) {
         final List<HeroOut> heros = heroService.listHero(authId);
         return Response.ok(heros).build();
+    }
+
+    @GET
+    @Path("/profile/{id}")
+    public Response getProfileByHeroId(@PathParam("id") Long heroId) {
+        try {
+            final ProfileOut profileOut = heroService.findProfileByHeroId(heroId);
+            return Response.ok().entity(profileOut).build();
+        } catch(HeroNotFoundException e) {
+            return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
+        }
     }
 }

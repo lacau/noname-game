@@ -17,6 +17,7 @@ public class SkillService {
     @Autowired
     private SkillRepository skillRepository;
 
+    @Autowired
     private SkillAdapter skillAdapter;
 
     public List<SkillOut> listSkill() {

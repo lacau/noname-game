@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 
 import com.noname.server.exception.HeroNotFoundException;
 import com.noname.server.exception.ResponseException;
+import com.noname.server.json.AchievementOut;
 import com.noname.server.json.DefaultErrorOut;
 import com.noname.server.json.HeroIn;
 import com.noname.server.json.HeroOut;
@@ -85,5 +86,12 @@ public class HeroEndPoint {
         } catch(HeroNotFoundException e) {
             return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
         }
+    }
+
+    @GET
+    @Path("/achievement/{id}")
+    public Response getAchievementListByHeroId(@PathParam("id") Long heroId) {
+        final List<AchievementOut> achievements = heroService.listAchievementByHeroId(heroId);
+        return Response.ok().entity(achievements).build();
     }
 }

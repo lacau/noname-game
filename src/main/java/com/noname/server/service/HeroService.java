@@ -4,6 +4,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.noname.server.adapter.AchievementAdapter;
 import com.noname.server.adapter.HeroAdapter;
 import com.noname.server.adapter.HeroBasicAdapter;
 import com.noname.server.adapter.ProfileAdapter;
@@ -14,9 +15,11 @@ import com.noname.server.entity.Profile;
 import com.noname.server.entity.Skill;
 import com.noname.server.exception.HeroNotFoundException;
 import com.noname.server.exception.ResourceAlreadyExistsException;
+import com.noname.server.json.AchievementOut;
 import com.noname.server.json.HeroIn;
 import com.noname.server.json.HeroOut;
 import com.noname.server.json.ProfileOut;
+import com.noname.server.repository.AchievementRepository;
 import com.noname.server.repository.HeroRepository;
 import com.noname.server.repository.ProfileRepository;
 import com.noname.server.repository.SkillRepository;
@@ -41,6 +44,9 @@ public class HeroService {
     private ProfileRepository profileRepository;
 
     @Autowired
+    private AchievementRepository achievementRepository;
+
+    @Autowired
     private HeroAdapter heroAdapter;
 
     @Autowired
@@ -48,6 +54,9 @@ public class HeroService {
 
     @Autowired
     private ProfileAdapter profileAdapter;
+
+    @Autowired
+    private AchievementAdapter achievementAdapter;
 
     public HeroOut findHeroById(Long cdId, Long credentialId) throws HeroNotFoundException {
         final Hero hero = heroRepository.findById(cdId, credentialId);
@@ -105,5 +114,9 @@ public class HeroService {
             throw new HeroNotFoundException();
 
         return profileAdapter.adapt(profile);
+    }
+
+    public List<AchievementOut> listAchievementByHeroId(Long heroId) {
+        return achievementAdapter.adapt(achievementRepository.listByHeroId(heroId));
     }
 }

@@ -13,6 +13,8 @@ public class ItemOut implements Serializable {
 
     private String description;
 
+    private Integer amount;
+
     public String getName() {
         return name;
     }
@@ -27,5 +29,13 @@ public class ItemOut implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 }

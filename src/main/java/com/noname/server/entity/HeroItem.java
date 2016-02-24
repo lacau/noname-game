@@ -22,6 +22,9 @@ public class HeroItem implements Serializable {
     @Column(name = "cd_id")
     private Long cdId;
 
+    @Column(name = "nr_amount")
+    private Integer amount;
+
     @ManyToOne
     @JoinColumn(name = "fk_hero")
     private Hero hero;
@@ -36,6 +39,14 @@ public class HeroItem implements Serializable {
 
     public void setCdId(Long cdId) {
         this.cdId = cdId;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 
     public Hero getHero() {

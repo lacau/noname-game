@@ -38,6 +38,7 @@ public class Hero implements Serializable {
 
     @OneToMany(mappedBy = "hero", cascade = CascadeType.ALL)
     @OrderBy(value = "cdId")
+    @org.hibernate.annotations.Where(clause = "nr_selected='true'")
     private Set<HeroSkill> heroSkills;
 
     @OneToMany(mappedBy = "hero")

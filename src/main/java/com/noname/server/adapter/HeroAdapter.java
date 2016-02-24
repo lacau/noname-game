@@ -43,6 +43,7 @@ public class HeroAdapter {
                 ItemOut item = new ItemOut();
                 item.setName(hi.getItem().getName());
                 item.setDescription(hi.getItem().getDescription());
+                item.setAmount(hi.getAmount());
                 items.add(item);
             }
             heroOut.setItems(items);

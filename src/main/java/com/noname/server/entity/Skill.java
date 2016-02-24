@@ -31,6 +31,9 @@ public class Skill implements Serializable {
     @Column(name = "nr_power")
     private Integer power;
 
+    @Column(name = "nr_required_level")
+    private Integer requiredLevel;
+
     @Column(name = "st_type")
     private SkillType type;
 
@@ -60,6 +63,14 @@ public class Skill implements Serializable {
 
     public Integer getPower() {
         return power;
+    }
+
+    public Integer getRequiredLevel() {
+        return requiredLevel;
+    }
+
+    public void setRequiredLevel(Integer requiredLevel) {
+        this.requiredLevel = requiredLevel;
     }
 
     public void setPower(Integer power) {

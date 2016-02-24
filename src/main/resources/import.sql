@@ -1,2 +1,2 @@
-INSERT INTO skill(st_name, st_description, nr_power, st_type) VALUES('Boost HP', 'Increase hp by 40%.', 40, 0);
-INSERT INTO skill(st_name, st_description, nr_power, st_type) VALUES('Boost Stamina', 'Increase stamina by 20%.', 20, 1);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Boost HP', 'Increase hp by 40%.', 40, 1, 0);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Boost Stamina', 'Increase stamina by 20%.', 20, 1, 1);

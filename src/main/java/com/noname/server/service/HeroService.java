@@ -1,20 +1,17 @@
 package com.noname.server.service;
 
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 import com.noname.server.adapter.AchievementAdapter;
 import com.noname.server.adapter.HeroAdapter;
 import com.noname.server.adapter.HeroBasicAdapter;
 import com.noname.server.adapter.ProfileAdapter;
-import com.noname.server.entity.Credential;
 import com.noname.server.entity.Hero;
-import com.noname.server.entity.HeroSkill;
 import com.noname.server.entity.Profile;
 import com.noname.server.entity.Skill;
 import com.noname.server.exception.HeroNotFoundException;
 import com.noname.server.exception.ResourceAlreadyExistsException;
+import com.noname.server.factory.HeroFactory;
 import com.noname.server.json.AchievementOut;
 import com.noname.server.json.HeroIn;
 import com.noname.server.json.HeroOut;
@@ -84,19 +81,8 @@ public class HeroService {
         if(countByName != 0)
             throw new ResourceAlreadyExistsException();
 
-        final int startLevel = 1;
         final List<Skill> skills = skillRepository.listAll();
-        Set<HeroSkill> heroSkills = new LinkedHashSet<HeroSkill>();
-
-        Hero hero = new Hero();
-        hero.setCredential(new Credential());
-        hero.getCredential().setCdId(authId);
-        hero.setName(heroIn.getName());
-        hero.setLevel(startLevel);
-        hero.setHeroSkills(heroSkills);
-
-        for(Skill skill : skills)
-            heroSkills.add(new HeroSkill(hero, skill, startLevel));
+        Hero hero = HeroFactory.getNewHero(heroIn.getName(), skills, authId);
 
         heroRepository.insert(hero);
 

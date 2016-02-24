@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 
+import org.hibernate.annotations.Where;
+
 /**
  * Created by lacau on 28/01/16.
  */
@@ -37,8 +39,8 @@ public class Hero implements Serializable {
     private Credential credential;
 
     @OneToMany(mappedBy = "hero", cascade = CascadeType.ALL)
-    @OrderBy(value = "cdId")
-    @org.hibernate.annotations.Where(clause = "nr_selected='true'")
+    @OrderBy(value = "order")
+    @Where(clause = "nr_selected='true'")
     private Set<HeroSkill> heroSkills;
 
     @OneToMany(mappedBy = "hero")

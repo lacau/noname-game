@@ -28,6 +28,9 @@ public class HeroSkill implements Serializable {
     @Column(name = "nr_selected")
     private Boolean selected;
 
+    @Column(name = "nr_order")
+    private Short order;
+
     @ManyToOne
     @JoinColumn(name = "fk_hero")
     private Hero hero;
@@ -67,6 +70,14 @@ public class HeroSkill implements Serializable {
 
     public void setSelected(Boolean selected) {
         this.selected = selected;
+    }
+
+    public Short getOrder() {
+        return order;
+    }
+
+    public void setOrder(Short order) {
+        this.order = order;
     }
 
     public Hero getHero() {

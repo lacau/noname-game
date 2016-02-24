@@ -34,6 +34,18 @@ public class Hero implements Serializable {
     @Column(name = "nr_level")
     private Integer level;
 
+    @Column(name = "nr_exp")
+    private Long exp;
+
+    @Column(name = "nr_hp")
+    private Integer hp;
+
+    @Column(name = "nr_stamina")
+    private Integer stamina;
+
+    @Column(name = "nr_str")
+    private Integer str;
+
     @ManyToOne
     @JoinColumn(name = "fk_credential")
     private Credential credential;
@@ -71,6 +83,38 @@ public class Hero implements Serializable {
 
     public void setLevel(Integer level) {
         this.level = level;
+    }
+
+    public Long getExp() {
+        return exp;
+    }
+
+    public void setExp(Long exp) {
+        this.exp = exp;
+    }
+
+    public Integer getHp() {
+        return hp;
+    }
+
+    public void setHp(Integer hp) {
+        this.hp = hp;
+    }
+
+    public Integer getStamina() {
+        return stamina;
+    }
+
+    public void setStamina(Integer stamina) {
+        this.stamina = stamina;
+    }
+
+    public Integer getStr() {
+        return str;
+    }
+
+    public void setStr(Integer str) {
+        this.str = str;
     }
 
     public Credential getCredential() {

@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.noname.server.enums.ItemType;
+
 /**
  * Created by lacau on 28/01/16.
  */
@@ -25,6 +27,9 @@ public class Item implements Serializable {
 
     @Column(name = "st_description")
     private String description;
+
+    @Column(name = "st_type")
+    private ItemType type;
 
     public Long getCdId() {
         return cdId;
@@ -48,5 +53,13 @@ public class Item implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public ItemType getType() {
+        return type;
+    }
+
+    public void setType(ItemType type) {
+        this.type = type;
     }
 }

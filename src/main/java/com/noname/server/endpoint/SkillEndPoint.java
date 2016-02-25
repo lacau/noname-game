@@ -1,12 +1,16 @@
 package com.noname.server.endpoint;
 
 import java.util.List;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.noname.server.json.SkillIn;
 import com.noname.server.json.SkillOut;
 import com.noname.server.service.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +32,12 @@ public class SkillEndPoint {
     public Response getSkillList() {
         final List<SkillOut> skills = skillService.listSkill();
         return Response.ok(skills).build();
+    }
+
+    @POST
+    @Path("/select")
+    public Response selectSkills(@Valid @NotNull List<SkillIn> skillIn) {
+
+        return Response.ok().build();
     }
 }

@@ -11,7 +11,6 @@ import com.noname.server.entity.Credential;
 public final class CryptUtils {
 
     private static final String SHA_256 = "SHA-256";
-    private static final String SHA_512 = "SHA-512";
 
     private CryptUtils() {
         throw new IllegalStateException("CryptUtils class shouldn't be instantiated!");
@@ -25,7 +24,7 @@ public final class CryptUtils {
         sb.append(":");
         sb.append(System.currentTimeMillis());
 
-        byte[] bytes = encryptValue(sb.toString(), SHA_512);
+        byte[] bytes = encryptValue(sb.toString(), SHA_256);
         return convertToHex(bytes);
     }
 

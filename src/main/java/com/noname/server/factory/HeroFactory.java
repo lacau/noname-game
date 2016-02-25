@@ -13,13 +13,13 @@ import com.noname.server.util.HeroUtils;
 /**
  * Created by lacau on 24/02/16.
  */
-public class HeroFactory {
+public final class HeroFactory {
 
-    private static final int startLevel = 1;
+    private static final int START_LEVEL = 1;
 
-    private static final int initialStr = 5;
+    private static final int INITIAL_STR = 5;
 
-    private static final int initialStamina = 100;
+    private static final int INITIAL_STAMINA = 100;
 
     private HeroFactory() {
         throw new IllegalStateException("HeroFactory class shouldn't be instantiated!");
@@ -31,14 +31,14 @@ public class HeroFactory {
         hero.setCredential(new Credential());
         hero.getCredential().setCdId(authId);
         hero.setName(name);
-        hero.setLevel(startLevel);
+        hero.setLevel(START_LEVEL);
         hero.setHeroSkills(heroSkills);
-        hero.setStr(initialStr);
-        hero.setStamina(initialStamina);
-        hero.setHp(HeroUtils.calculateTotalHp(startLevel, initialStr));
+        hero.setStr(INITIAL_STR);
+        hero.setStamina(INITIAL_STAMINA);
+        hero.setHp(HeroUtils.calculateTotalHp(START_LEVEL, INITIAL_STR));
 
         for(Skill skill : skills)
-            heroSkills.add(new HeroSkill(hero, skill, startLevel));
+            heroSkills.add(new HeroSkill(hero, skill, START_LEVEL));
 
         return hero;
     }

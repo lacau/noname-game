@@ -9,7 +9,7 @@ import com.noname.server.enums.NPCType;
 /**
  * Created by lacau on 24/02/16.
  */
-public class MonsterUtils {
+public final class MonsterUtils {
 
     private static final short MONSTERS_PER_FIND = 5;
 

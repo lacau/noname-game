@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.NotBlank;
  */
 public class SkillIn implements Serializable {
 
-    private static final long serialVersionUID = -5347479098906991418L;
+    private static final long serialVersionUID = -2589973203871288110L;
 
     @NotBlank
     private String name;

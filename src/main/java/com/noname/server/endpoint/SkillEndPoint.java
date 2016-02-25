@@ -10,8 +10,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.noname.server.json.SkillIn;
 import com.noname.server.json.SkillOut;
+import com.noname.server.json.SkillSelectIn;
 import com.noname.server.service.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -36,7 +36,7 @@ public class SkillEndPoint {
 
     @POST
     @Path("/select")
-    public Response selectSkills(@Valid @NotNull List<SkillIn> skillIn) {
+    public Response selectSkills(@Valid @NotNull SkillSelectIn skillSelectIn) {
 
         return Response.ok().build();
     }

@@ -8,7 +8,7 @@ import com.noname.server.entity.Credential;
 import com.noname.server.entity.Hero;
 import com.noname.server.entity.HeroSkill;
 import com.noname.server.entity.Skill;
-import com.noname.server.util.MathUtils;
+import com.noname.server.util.HeroUtils;
 
 /**
  * Created by lacau on 24/02/16.
@@ -35,7 +35,7 @@ public class HeroFactory {
         hero.setHeroSkills(heroSkills);
         hero.setStr(initialStr);
         hero.setStamina(initialStamina);
-        hero.setHp(MathUtils.calculateTotalHp(startLevel, initialStr));
+        hero.setHp(HeroUtils.calculateTotalHp(startLevel, initialStr));
 
         for(Skill skill : skills)
             heroSkills.add(new HeroSkill(hero, skill, startLevel));

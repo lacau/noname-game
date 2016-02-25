@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.noname.server.enums.NPCType;
+
 /**
  * Created by lacau on 28/01/16.
  */
@@ -23,6 +25,9 @@ public class NPC implements Serializable {
     @Column(name = "st_name")
     private String name;
 
+    @Column(name = "st_type")
+    private NPCType type;
+
     public Long getCdId() {
         return cdId;
     }
@@ -37,5 +42,13 @@ public class NPC implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public NPCType getType() {
+        return type;
+    }
+
+    public void setType(NPCType type) {
+        this.type = type;
     }
 }

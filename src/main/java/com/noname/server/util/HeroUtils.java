@@ -2,7 +2,7 @@ package com.noname.server.util;
 
 import java.util.Random;
 
-public final class MathUtils {
+public final class HeroUtils {
 
     private static final Random RANDOM = new Random();
 
@@ -12,8 +12,8 @@ public final class MathUtils {
 
     private static final float DAMAGE_VARIATION = 10f;
 
-    private MathUtils() {
-        throw new IllegalStateException("MathUtils class shouldn't be instantiated!");
+    private HeroUtils() {
+        throw new IllegalStateException("HeroUtils class shouldn't be instantiated!");
     }
 
     public static long requiredXpToLvlUp(int lvl) {

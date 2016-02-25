@@ -3,7 +3,6 @@ package com.noname.server.security;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
-import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,10 +20,10 @@ public class LoginFilter implements ContainerRequestFilter {
     public void filter(ContainerRequestContext requestContext) throws WebApplicationException {
         final String authId = requestContext.getHeaderString("auth_id");
         final String authToken = requestContext.getHeaderString("auth_token");
-        if(authId == null || authToken == null)
-            throw new WebApplicationException(Response.Status.UNAUTHORIZED);
-
-        if(!credentialValidator.isCredentialValid(authId, authToken))
-            throw new WebApplicationException(Response.Status.UNAUTHORIZED);
+        //        if(authId == null || authToken == null)
+        //            throw new WebApplicationException(Response.Status.UNAUTHORIZED);
+        //
+        //        if(!credentialValidator.isCredentialValid(authId, authToken))
+        //            throw new WebApplicationException(Response.Status.UNAUTHORIZED);
     }
 }

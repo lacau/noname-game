@@ -2,6 +2,7 @@ package com.noname.server.json;
 
 import java.io.Serializable;
 
+import com.noname.server.enums.SkillType;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
@@ -12,17 +13,17 @@ public class SkillIn implements Serializable {
     private static final long serialVersionUID = -2589973203871288110L;
 
     @NotBlank
-    private String name;
+    private SkillType type;
 
     @NotBlank
     private Integer order;
 
-    public String getName() {
-        return name;
+    public SkillType getType() {
+        return type;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setType(SkillType type) {
+        this.type = type;
     }
 
     public Integer getOrder() {

@@ -37,7 +37,7 @@ public class SkillEndPoint {
     @POST
     @Path("/select")
     public Response selectSkills(@Valid @NotNull SkillSelectIn skillSelectIn) {
-
+        skillService.selectSkills(skillSelectIn);
         return Response.ok().build();
     }
 }

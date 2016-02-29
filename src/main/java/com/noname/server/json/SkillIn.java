@@ -1,9 +1,9 @@
 package com.noname.server.json;
 
 import java.io.Serializable;
+import javax.validation.constraints.NotNull;
 
 import com.noname.server.enums.SkillType;
-import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * Created by lacau on 25/02/16.
@@ -12,10 +12,10 @@ public class SkillIn implements Serializable {
 
     private static final long serialVersionUID = -2589973203871288110L;
 
-    @NotBlank
+    @NotNull
     private SkillType type;
 
-    @NotBlank
+    @NotNull
     private Integer order;
 
     public SkillType getType() {

@@ -1,6 +1,7 @@
 package com.noname.server.repository;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -8,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import com.noname.server.entity.Hero;
+import com.noname.server.entity.HeroSkill;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,8 +26,6 @@ public class HeroRepository {
     public Hero findById(Long id, Long credentialId) {
         StringBuilder hql = new StringBuilder();
         hql.append("SELECT hero FROM Hero hero ");
-        hql.append("LEFT JOIN FETCH hero.heroSkills heroSkills ");
-        hql.append("LEFT JOIN FETCH heroSkills.skill skill ");
         hql.append("LEFT JOIN FETCH hero.heroItems heroItems ");
         hql.append("LEFT JOIN FETCH heroItems.item item ");
         hql.append("JOIN hero.credential credential ");
@@ -36,8 +36,21 @@ public class HeroRepository {
         query.setParameter("credentialId", credentialId);
         query.setParameter("heroId", id);
 
+        hql.setLength(0);
+        hql.append("SELECT heroSkill FROM HeroSkill heroSkill ");
+        hql.append("JOIN FETCH heroSkill.skill skill ");
+        hql.append("WHERE heroSkill.hero = :hero ");
+        hql.append("AND heroSkill.selected = true ");
+        hql.append("ORDER BY heroSkill.order");
+
         try {
-            return query.getSingleResult();
+            final Hero hero = query.getSingleResult();
+            final TypedQuery<HeroSkill> querySkill = entityManager.createQuery(hql.toString(), HeroSkill.class);
+            querySkill.setParameter("hero", hero);
+            
+            hero.setHeroSkills(new HashSet<HeroSkill>(querySkill.getResultList()));
+
+            return hero;
         } catch(NoResultException e) {
             return null;
         }

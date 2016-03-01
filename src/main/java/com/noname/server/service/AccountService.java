@@ -5,6 +5,7 @@ import java.util.Calendar;
 import com.noname.server.adapter.CredentialAdapter;
 import com.noname.server.entity.Credential;
 import com.noname.server.exception.ResourceAlreadyExistsException;
+import com.noname.server.exception.ResponseException;
 import com.noname.server.json.CredentialIn;
 import com.noname.server.json.CredentialOut;
 import com.noname.server.repository.CredentialRepository;
@@ -27,7 +28,7 @@ public class AccountService {
     private CredentialAdapter credentialAdapter;
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public CredentialOut createAccount(CredentialIn credentialIn) throws ResourceAlreadyExistsException {
+    public CredentialOut createAccount(CredentialIn credentialIn) throws ResponseException {
         final Long countByLogin = credentialRepository.findCountByLogin(credentialIn.getLogin());
         if(countByLogin != 0)
             throw new ResourceAlreadyExistsException();

@@ -7,7 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 import com.noname.server.entity.Credential;
-import com.noname.server.exception.InvalidCredentialsException;
+import com.noname.server.exception.ResponseException;
 import com.noname.server.json.CredentialIn;
 import com.noname.server.json.CredentialOut;
 import com.noname.server.json.DefaultErrorOut;
@@ -39,7 +39,7 @@ public class LoginEndPoint {
         try {
             loginService.doLoginByToken(credential);
             return Response.ok().build();
-        } catch(InvalidCredentialsException e) {
+        } catch(ResponseException e) {
             return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
         }
     }
@@ -50,7 +50,7 @@ public class LoginEndPoint {
         try {
             final CredentialOut credentialOut = loginService.doLoginByCredential(credentialIn);
             return Response.ok().entity(credentialOut).build();
-        } catch(InvalidCredentialsException e) {
+        } catch(ResponseException e) {
             return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
         }
     }
@@ -65,7 +65,7 @@ public class LoginEndPoint {
         try {
             loginService.doLogout(credential);
             return Response.ok().build();
-        } catch(InvalidCredentialsException e) {
+        } catch(ResponseException e) {
             return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
         }
     }

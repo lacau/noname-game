@@ -7,6 +7,7 @@ import com.noname.server.adapter.CredentialCacheAdapter;
 import com.noname.server.cache.CacheManager;
 import com.noname.server.entity.Credential;
 import com.noname.server.exception.InvalidCredentialsException;
+import com.noname.server.exception.ResponseException;
 import com.noname.server.json.CredentialIn;
 import com.noname.server.json.CredentialOut;
 import com.noname.server.repository.CredentialRepository;
@@ -38,7 +39,7 @@ public class LoginService {
     @Autowired
     private CredentialValidator credentialValidator;
 
-    public void doLoginByToken(Credential credential) throws InvalidCredentialsException {
+    public void doLoginByToken(Credential credential) throws ResponseException {
         final Credential credentialDB = credentialRepository.findByIdAndToken(credential);
         if(credentialDB == null)
             throw new InvalidCredentialsException();
@@ -47,7 +48,7 @@ public class LoginService {
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public CredentialOut doLoginByCredential(CredentialIn credentialIn) throws InvalidCredentialsException {
+    public CredentialOut doLoginByCredential(CredentialIn credentialIn) throws ResponseException {
         Credential credential = new Credential();
         credential.setLogin(credentialIn.getLogin());
         credential.setPassword(CryptUtils.generateSHA256Password(credentialIn.getPassword()));
@@ -66,7 +67,7 @@ public class LoginService {
         return credentialAdapter.adapt(credentialDB);
     }
 
-    public void doLogout(Credential credential) throws InvalidCredentialsException {
+    public void doLogout(Credential credential) throws ResponseException {
         final Credential credentialDB = credentialRepository.findByIdAndToken(credential);
         if(credentialDB == null)
             throw new InvalidCredentialsException();

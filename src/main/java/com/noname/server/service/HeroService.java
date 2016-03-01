@@ -11,6 +11,7 @@ import com.noname.server.entity.Profile;
 import com.noname.server.entity.Skill;
 import com.noname.server.exception.HeroNotFoundException;
 import com.noname.server.exception.ResourceAlreadyExistsException;
+import com.noname.server.exception.ResponseException;
 import com.noname.server.factory.HeroFactory;
 import com.noname.server.json.AchievementOut;
 import com.noname.server.json.HeroIn;
@@ -55,7 +56,7 @@ public class HeroService {
     @Autowired
     private AchievementAdapter achievementAdapter;
 
-    public HeroOut findHeroById(Long cdId, Long credentialId) throws HeroNotFoundException {
+    public HeroOut findHeroById(Long cdId, Long credentialId) throws ResponseException {
         final Hero hero = heroRepository.findById(cdId, credentialId);
         if(hero == null)
             throw new HeroNotFoundException();
@@ -63,7 +64,7 @@ public class HeroService {
         return heroAdapter.adapt(hero);
     }
 
-    public HeroOut findHeroByName(String name) throws HeroNotFoundException {
+    public HeroOut findHeroByName(String name) throws ResponseException {
         final Hero hero = heroRepository.findByName(name);
         if(hero == null)
             throw new HeroNotFoundException();
@@ -76,7 +77,7 @@ public class HeroService {
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public HeroOut createHero(HeroIn heroIn, Long authId) throws ResourceAlreadyExistsException {
+    public HeroOut createHero(HeroIn heroIn, Long authId) throws ResponseException {
         final Long countByName = heroRepository.findCountByName(heroIn.getName());
         if(countByName != 0)
             throw new ResourceAlreadyExistsException();
@@ -94,7 +95,7 @@ public class HeroService {
         return heroBasicAdapter.adapt(hero);
     }
 
-    public ProfileOut findProfileByHeroId(Long cdId) throws HeroNotFoundException {
+    public ProfileOut findProfileByHeroId(Long cdId) throws ResponseException {
         final Profile profile = profileRepository.findByHeroId(cdId);
         if(profile == null)
             throw new HeroNotFoundException();

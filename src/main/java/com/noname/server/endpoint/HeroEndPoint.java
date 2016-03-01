@@ -13,7 +13,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.noname.server.exception.HeroNotFoundException;
 import com.noname.server.exception.ResponseException;
 import com.noname.server.json.AchievementOut;
 import com.noname.server.json.DefaultErrorOut;
@@ -54,7 +53,7 @@ public class HeroEndPoint {
         try {
             final HeroOut heroOut = heroService.findHeroById(cdId, authId);
             return Response.ok().entity(heroOut).build();
-        } catch(HeroNotFoundException e) {
+        } catch(ResponseException e) {
             return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
         }
     }
@@ -65,7 +64,7 @@ public class HeroEndPoint {
         try {
             final HeroOut heroOut = heroService.findHeroByName(name);
             return Response.ok().entity(heroOut).build();
-        } catch(HeroNotFoundException e) {
+        } catch(ResponseException e) {
             return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
         }
     }
@@ -83,7 +82,7 @@ public class HeroEndPoint {
         try {
             final ProfileOut profileOut = heroService.findProfileByHeroId(heroId);
             return Response.ok().entity(profileOut).build();
-        } catch(HeroNotFoundException e) {
+        } catch(ResponseException e) {
             return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
         }
     }

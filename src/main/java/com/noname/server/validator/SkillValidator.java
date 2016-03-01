@@ -12,6 +12,10 @@ import org.springframework.stereotype.Component;
 public class SkillValidator {
 
     public boolean isSkillsValidForHeroLevel(int heroLevel, List<Skill> skills) {
-        return false;
+        for(Skill skill : skills)
+            if(skill.getRequiredLevel() > heroLevel)
+                return false;
+
+        return true;
     }
 }

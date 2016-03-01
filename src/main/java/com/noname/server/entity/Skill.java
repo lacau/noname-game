@@ -84,4 +84,37 @@ public class Skill implements Serializable {
     public void setType(SkillType type) {
         this.type = type;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o)
+            return true;
+        if(o == null || getClass() != o.getClass())
+            return false;
+
+        Skill skill = (Skill) o;
+
+        if(!cdId.equals(skill.cdId))
+            return false;
+        if(!name.equals(skill.name))
+            return false;
+        if(!description.equals(skill.description))
+            return false;
+        if(!power.equals(skill.power))
+            return false;
+        if(!requiredLevel.equals(skill.requiredLevel))
+            return false;
+        return type == skill.type;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = cdId.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + description.hashCode();
+        result = 31 * result + power.hashCode();
+        result = 31 * result + requiredLevel.hashCode();
+        result = 31 * result + type.hashCode();
+        return result;
+    }
 }

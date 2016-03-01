@@ -85,6 +85,26 @@ public class HeroRepository {
         }
     }
 
+    public Hero findWithAllSkills(Long id, Long credentialId) {
+        StringBuilder hql = new StringBuilder();
+        hql.append("SELECT hero FROM Hero hero ");
+        hql.append("LEFT JOIN FETCH hero.heroSkills heroSkills ");
+        hql.append("LEFT JOIN FETCH heroSkills.skill skill ");
+        hql.append("JOIN hero.credential credential ");
+        hql.append("WHERE credential.id = :credentialId ");
+        hql.append("AND hero.id = :heroId ");
+
+        final TypedQuery<Hero> query = entityManager.createQuery(hql.toString(), Hero.class);
+        query.setParameter("credentialId", credentialId);
+        query.setParameter("heroId", id);
+
+        try {
+            return query.getSingleResult();
+        } catch(NoResultException e) {
+            return null;
+        }
+    }
+
     @Transactional(propagation = Propagation.REQUIRED)
     public void insert(Hero hero) {
         entityManager.persist(hero);

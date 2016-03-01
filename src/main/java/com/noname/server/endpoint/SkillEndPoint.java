@@ -4,12 +4,15 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.noname.server.exception.ResponseException;
+import com.noname.server.json.DefaultErrorOut;
 import com.noname.server.json.SkillOut;
 import com.noname.server.json.SkillSelectIn;
 import com.noname.server.service.SkillService;
@@ -36,8 +39,12 @@ public class SkillEndPoint {
 
     @POST
     @Path("/select")
-    public Response selectSkills(@Valid @NotNull SkillSelectIn skillSelectIn) {
-        skillService.selectSkills(skillSelectIn);
-        return Response.ok().build();
+    public Response selectSkills(@Valid @NotNull SkillSelectIn skillSelectIn, @HeaderParam("auth_id") Long authId) {
+        try {
+            skillService.selectSkills(skillSelectIn, authId);
+            return Response.ok().build();
+        } catch(ResponseException e) {
+            return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();
+        }
     }
 }

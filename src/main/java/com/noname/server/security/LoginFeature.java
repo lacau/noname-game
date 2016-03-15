@@ -18,10 +18,14 @@ public class LoginFeature implements DynamicFeature {
     @Autowired
     private LoginFilter loginFilter;
 
+    @Autowired
+    private CORSFilter corsFilter;
+
     @Override
     public void configure(ResourceInfo resourceInfo, FeatureContext context) {
         if(resourceShouldBeFiltered(resourceInfo))
             context.register(loginFilter);
+        context.register(corsFilter);
     }
 
     private boolean resourceShouldBeFiltered(ResourceInfo resourceInfo) {

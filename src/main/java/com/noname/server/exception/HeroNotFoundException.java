@@ -8,6 +8,6 @@ import org.springframework.http.HttpStatus;
 public class HeroNotFoundException extends ResponseException {
 
     public HeroNotFoundException() {
-        super("", HttpStatus.NOT_FOUND);
+        super("error.hero.not.found", HttpStatus.NOT_FOUND);
     }
 }

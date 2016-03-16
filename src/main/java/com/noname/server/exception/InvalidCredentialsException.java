@@ -8,6 +8,6 @@ import org.springframework.http.HttpStatus;
 public class InvalidCredentialsException extends ResponseException {
 
     public InvalidCredentialsException() {
-        super("", HttpStatus.BAD_REQUEST);
+        super("error.invalid.credentials", HttpStatus.BAD_REQUEST);
     }
 }

@@ -8,6 +8,6 @@ import org.springframework.http.HttpStatus;
 public class InvalidSkillsException extends ResponseException {
 
     public InvalidSkillsException() {
-        super("", HttpStatus.BAD_REQUEST);
+        super("error.invalid.skills", HttpStatus.BAD_REQUEST);
     }
 }

@@ -44,6 +44,9 @@ public class Hero implements Serializable {
     @Column(name = "nr_str")
     private Integer str;
 
+    @Column(name = "nr_dex")
+    private Integer dex;
+
     @ManyToOne
     @JoinColumn(name = "fk_credential")
     private Credential credential;
@@ -112,6 +115,14 @@ public class Hero implements Serializable {
 
     public void setStr(Integer str) {
         this.str = str;
+    }
+
+    public Integer getDex() {
+        return dex;
+    }
+
+    public void setDex(Integer dex) {
+        this.dex = dex;
     }
 
     public Credential getCredential() {

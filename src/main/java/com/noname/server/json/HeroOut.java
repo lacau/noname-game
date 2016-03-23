@@ -24,6 +24,8 @@ public class HeroOut implements Serializable {
 
     private Integer str;
 
+    private Integer dex;
+
     private List<SkillOut> skills;
 
     private List<ItemOut> items;
@@ -82,6 +84,14 @@ public class HeroOut implements Serializable {
 
     public void setStr(Integer str) {
         this.str = str;
+    }
+
+    public Integer getDex() {
+        return dex;
+    }
+
+    public void setDex(Integer dex) {
+        this.dex = dex;
     }
 
     public List<SkillOut> getSkills() {

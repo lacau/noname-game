@@ -19,6 +19,8 @@ public final class HeroFactory {
 
     private static final int INITIAL_STR = 5;
 
+    private static final int INITIAL_DEX = 5;
+
     private static final int INITIAL_STAMINA = 100;
 
     private HeroFactory() {
@@ -34,8 +36,10 @@ public final class HeroFactory {
         hero.setLevel(START_LEVEL);
         hero.setHeroSkills(heroSkills);
         hero.setStr(INITIAL_STR);
+        hero.setDex(INITIAL_DEX);
         hero.setStamina(INITIAL_STAMINA);
         hero.setHp(HeroUtils.calculateTotalHp(START_LEVEL, INITIAL_STR));
+        hero.setExp(0L);
 
         for(Skill skill : skills)
             heroSkills.add(new HeroSkill(hero, skill, START_LEVEL));

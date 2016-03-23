@@ -30,6 +30,7 @@ public class HeroAdapter {
         heroOut.setHp(hero.getHp());
         heroOut.setStamina(hero.getStamina());
         heroOut.setStr(hero.getStr());
+        heroOut.setDex(hero.getDex());
 
         if(hero.getHeroSkills() != null) {
             List<SkillOut> skills = new ArrayList<SkillOut>();

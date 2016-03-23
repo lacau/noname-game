@@ -2,10 +2,10 @@ package com.noname.server.service;
 
 import java.util.List;
 
-import com.noname.server.adapter.AchievementAdapter;
-import com.noname.server.adapter.HeroAdapter;
-import com.noname.server.adapter.HeroBasicAdapter;
-import com.noname.server.adapter.ProfileAdapter;
+import com.noname.server.converter.AchievementConverter;
+import com.noname.server.converter.HeroBasicConverter;
+import com.noname.server.converter.HeroConverter;
+import com.noname.server.converter.ProfileConverter;
 import com.noname.server.entity.Hero;
 import com.noname.server.entity.Profile;
 import com.noname.server.entity.Skill;
@@ -45,23 +45,23 @@ public class HeroService {
     private AchievementRepository achievementRepository;
 
     @Autowired
-    private HeroAdapter heroAdapter;
+    private HeroConverter heroConverter;
 
     @Autowired
-    private HeroBasicAdapter heroBasicAdapter;
+    private HeroBasicConverter heroBasicConverter;
 
     @Autowired
-    private ProfileAdapter profileAdapter;
+    private ProfileConverter profileConverter;
 
     @Autowired
-    private AchievementAdapter achievementAdapter;
+    private AchievementConverter achievementConverter;
 
     public HeroOut findHeroById(Long cdId, Long credentialId) throws ResponseException {
         final Hero hero = heroRepository.findById(cdId, credentialId);
         if(hero == null)
             throw new HeroNotFoundException();
 
-        return heroAdapter.adapt(hero);
+        return heroConverter.convert(hero);
     }
 
     public HeroOut findHeroByName(String name) throws ResponseException {
@@ -69,11 +69,11 @@ public class HeroService {
         if(hero == null)
             throw new HeroNotFoundException();
 
-        return heroBasicAdapter.adapt(hero);
+        return heroBasicConverter.convert(hero);
     }
 
     public List<HeroOut> listHero(Long credentialId) {
-        return heroBasicAdapter.adapt(heroRepository.listHero(credentialId));
+        return heroBasicConverter.convert(heroRepository.listHero(credentialId));
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -92,7 +92,7 @@ public class HeroService {
 
         profileRepository.insert(profile);
 
-        return heroBasicAdapter.adapt(hero);
+        return heroBasicConverter.convert(hero);
     }
 
     public ProfileOut findProfileByHeroId(Long cdId) throws ResponseException {
@@ -100,10 +100,10 @@ public class HeroService {
         if(profile == null)
             throw new HeroNotFoundException();
 
-        return profileAdapter.adapt(profile);
+        return profileConverter.convert(profile);
     }
 
     public List<AchievementOut> listAchievementByHeroId(Long heroId) {
-        return achievementAdapter.adapt(achievementRepository.listByHeroId(heroId));
+        return achievementConverter.convert(achievementRepository.listByHeroId(heroId));
     }
 }

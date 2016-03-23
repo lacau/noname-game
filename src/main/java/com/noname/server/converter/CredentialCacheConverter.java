@@ -1,4 +1,4 @@
-package com.noname.server.adapter;
+package com.noname.server.converter;
 
 import com.noname.server.cache.CredentialCache;
 import com.noname.server.entity.Credential;
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
  * Created by lacau on 16/02/16.
  */
 @Component
-public class CredentialCacheAdapter {
+public class CredentialCacheConverter {
 
-    public CredentialCache adapt(Credential credential) {
+    public CredentialCache convert(Credential credential) {
         CredentialCache credentialCache = new CredentialCache();
         credentialCache.id = credential.getCdId();
         credentialCache.token = credential.getToken();

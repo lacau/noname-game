@@ -1,4 +1,4 @@
-package com.noname.server.adapter;
+package com.noname.server.converter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
  * Created by lacau on 22/02/16.
  */
 @Component
-public class AchievementAdapter {
+public class AchievementConverter {
 
-    public AchievementOut adapt(HeroAchievement heroAchievement) {
+    public AchievementOut convert(HeroAchievement heroAchievement) {
         AchievementOut achievementOut = new AchievementOut();
         achievementOut.setName(heroAchievement.getAchievement().getName());
         achievementOut.setDescription(heroAchievement.getAchievement().getDescription());
@@ -21,10 +21,10 @@ public class AchievementAdapter {
         return achievementOut;
     }
 
-    public List<AchievementOut> adapt(List<HeroAchievement> achievements) {
+    public List<AchievementOut> convert(List<HeroAchievement> achievements) {
         List<AchievementOut> listAchievement = new ArrayList<AchievementOut>();
         for(HeroAchievement a : achievements)
-            listAchievement.add(adapt(a));
+            listAchievement.add(convert(a));
 
         return listAchievement;
     }

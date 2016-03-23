@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.noname.server.adapter.SkillAdapter;
+import com.noname.server.converter.SkillConverter;
 import com.noname.server.entity.Hero;
 import com.noname.server.entity.HeroSkill;
 import com.noname.server.entity.Skill;
@@ -36,13 +36,13 @@ public class SkillService {
     private HeroRepository heroRepository;
 
     @Autowired
-    private SkillAdapter skillAdapter;
+    private SkillConverter skillConverter;
 
     @Autowired
     private SkillValidator skillValidator;
 
     public List<SkillOut> listSkill() {
-        return skillAdapter.adapt(skillRepository.listAll());
+        return skillConverter.convert(skillRepository.listAll());
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

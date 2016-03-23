@@ -1,4 +1,4 @@
-package com.noname.server.adapter;
+package com.noname.server.converter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,16 +16,16 @@ import org.springframework.stereotype.Component;
  * Created by lacau on 12/02/16.
  */
 @Component
-public class HeroAdapter {
+public class HeroConverter {
 
     @Autowired
-    private HeroBasicAdapter heroBasicAdapter;
+    private HeroBasicConverter heroBasicConverter;
 
     @Autowired
-    private SkillAdapter skillAdapter;
+    private SkillConverter skillConverter;
 
-    public HeroOut adapt(Hero hero) {
-        HeroOut heroOut = heroBasicAdapter.adapt(hero);
+    public HeroOut convert(Hero hero) {
+        HeroOut heroOut = heroBasicConverter.convert(hero);
         heroOut.setExp(hero.getExp());
         heroOut.setHp(hero.getHp());
         heroOut.setStamina(hero.getStamina());
@@ -35,7 +35,7 @@ public class HeroAdapter {
         if(hero.getHeroSkills() != null) {
             List<SkillOut> skills = new ArrayList<SkillOut>();
             for(HeroSkill hs : hero.getHeroSkills()) {
-                SkillOut skill = skillAdapter.adapt(hs.getSkill());
+                SkillOut skill = skillConverter.convert(hs.getSkill());
                 skill.setLevel(hs.getLevel());
                 skills.add(skill);
             }

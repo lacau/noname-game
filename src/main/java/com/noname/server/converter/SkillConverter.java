@@ -1,4 +1,4 @@
-package com.noname.server.adapter;
+package com.noname.server.converter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
  * Created by lacau on 22/02/16.
  */
 @Component
-public class SkillAdapter {
+public class SkillConverter {
 
-    public SkillOut adapt(Skill skill) {
+    public SkillOut convert(Skill skill) {
         SkillOut skillOut = new SkillOut();
         skillOut.setName(skill.getName());
         skillOut.setDescription(skill.getDescription());
@@ -22,10 +22,10 @@ public class SkillAdapter {
         return skillOut;
     }
 
-    public List<SkillOut> adapt(List<Skill> skills) {
+    public List<SkillOut> convert(List<Skill> skills) {
         List<SkillOut> listSkill = new ArrayList<SkillOut>();
         for(Skill s : skills)
-            listSkill.add(adapt(s));
+            listSkill.add(convert(s));
 
         return listSkill;
     }

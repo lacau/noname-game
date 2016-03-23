@@ -2,7 +2,7 @@ package com.noname.server.service;
 
 import java.util.Calendar;
 
-import com.noname.server.adapter.CredentialAdapter;
+import com.noname.server.converter.CredentialConverter;
 import com.noname.server.entity.Credential;
 import com.noname.server.exception.ResourceAlreadyExistsException;
 import com.noname.server.exception.ResponseException;
@@ -25,7 +25,7 @@ public class AccountService {
     private CredentialRepository credentialRepository;
 
     @Autowired
-    private CredentialAdapter credentialAdapter;
+    private CredentialConverter credentialConverter;
 
     @Transactional(propagation = Propagation.REQUIRED)
     public CredentialOut createAccount(CredentialIn credentialIn) throws ResponseException {
@@ -41,6 +41,6 @@ public class AccountService {
 
         credentialRepository.insert(credential);
 
-        return credentialAdapter.adapt(credential);
+        return credentialConverter.convert(credential);
     }
 }

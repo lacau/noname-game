@@ -2,8 +2,8 @@ package com.noname.server.service;
 
 import java.util.Calendar;
 
-import com.noname.server.adapter.CredentialAdapter;
-import com.noname.server.adapter.CredentialCacheAdapter;
+import com.noname.server.converter.CredentialCacheConverter;
+import com.noname.server.converter.CredentialConverter;
 import com.noname.server.cache.CacheManager;
 import com.noname.server.entity.Credential;
 import com.noname.server.exception.InvalidCredentialsException;
@@ -28,10 +28,10 @@ public class LoginService {
     private CredentialRepository credentialRepository;
 
     @Autowired
-    private CredentialAdapter credentialAdapter;
+    private CredentialConverter credentialConverter;
 
     @Autowired
-    private CredentialCacheAdapter credentialCacheAdapter;
+    private CredentialCacheConverter credentialCacheConverter;
 
     @Autowired
     private CacheManager cacheManager;
@@ -44,7 +44,7 @@ public class LoginService {
         if(credentialDB == null)
             throw new InvalidCredentialsException();
 
-        cacheManager.store(credentialCacheAdapter.adapt(credentialDB));
+        cacheManager.store(credentialCacheConverter.convert(credentialDB));
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -62,9 +62,9 @@ public class LoginService {
             credentialDB = credentialRepository.update(credentialDB);
         }
 
-        cacheManager.store(credentialCacheAdapter.adapt(credentialDB));
+        cacheManager.store(credentialCacheConverter.convert(credentialDB));
 
-        return credentialAdapter.adapt(credentialDB);
+        return credentialConverter.convert(credentialDB);
     }
 
     public void doLogout(Credential credential) throws ResponseException {

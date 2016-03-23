@@ -1,4 +1,4 @@
-package com.noname.server.adapter;
+package com.noname.server.converter;
 
 import com.noname.server.entity.Profile;
 import com.noname.server.json.ProfileOut;
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
  * Created by lacau on 22/02/16.
  */
 @Component
-public class ProfileAdapter {
+public class ProfileConverter {
 
-    public ProfileOut adapt(Profile profile) {
+    public ProfileOut convert(Profile profile) {
         ProfileOut profileOut = new ProfileOut();
         profileOut.setBattles(profile.getBattles());
         profileOut.setDies(profile.getDies());

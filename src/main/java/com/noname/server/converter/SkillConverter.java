@@ -18,6 +18,7 @@ public class SkillConverter {
         skillOut.setName(skill.getName());
         skillOut.setDescription(skill.getDescription());
         skillOut.setPower(skill.getPower());
+        skillOut.setType(skill.getType().name());
 
         return skillOut;
     }

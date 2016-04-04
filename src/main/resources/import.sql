@@ -3,3 +3,15 @@ INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type)
 INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Iron will', 'Increase defense by 25%.', 25, 1, 2);
 INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Inner power', 'Increase attack by 25%.', 25, 1, 3);
 INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Balance', 'Increase attack and defense by 10%.', 10, 1, 4);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Sacrifice', 'Decrease stamina by 30% and increase health by 40%.', 10, 1, 5);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Body to mind', 'Decrease hp by 30% and increase stamina by 40%.', 10, 1, 6);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Beast', 'Increase attack by 15% and critical rate by 20%.', 10, 1, 7);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Berserker', 'Decrease defense by 40%, increase attack by 30%, increase critical rate by 30% and critical damage by 40%, lasts 3 battles. 4h cooldown.', 10, 1, 8);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Through the heart', 'Decrease your attack and defense by 5%, increase your critical rate and damage by 15%.', 10, 1, 9);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Deep breath', 'Increase your health regeneration by 25%.', 10, 1, 10);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Replenish', 'Increase your stamina regeneration by 10%.', 10, 1, 11);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Anvil', 'Decrease attack by 75%, critical rate and damage by 60%, increase health and defense by 90%.', 10, 1, 12);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Undead hate', 'Increase damage against zombies by 20%.', 10, 1, 13);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Dragon frenzy', 'Decrease defense by 20%, increase attack by 40%, increase critical rate by 15%, only against dragons.', 10, 1, 14);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Lucky', 'Increase chance of monster find by 30% on top of normal rate.', 10, 1, 15);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Superstitious', 'There is a 0.2% of dispatch a lethal hit, 5% chance of replenish all stamina and 10% chance of recovery full health after win a battle.', 10, 1, 16);

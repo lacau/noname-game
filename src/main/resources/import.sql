@@ -15,3 +15,11 @@ INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type)
 INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Dragon frenzy', 'Decrease defense by 20%, increase attack by 40%, increase critical rate by 15%, only against dragons.', 10, 1, 14);
 INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Lucky', 'Increase chance of monster find by 30% on top of normal rate.', 10, 1, 15);
 INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Superstitious', 'There is a 0.2% of dispatch a lethal hit, 5% chance of replenish all stamina and 10% chance of recovery full health after win a battle.', 10, 1, 16);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Illusionist', 'There is a 15% chance of deal a second attack after a critical hit.', 10, 1, 17);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Ghost', 'There is a 10% chance of dodge income attacks.', 10, 1, 18);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Last resort', 'Increase 50% defense when health below 15%.', 10, 1, 19);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Finisher', 'Increase attack and critical rate by 30% when opponent is below 20% health.', 10, 1, 20);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Reborn', 'Recovery 35% health when dodge income attacks.', 10, 1, 21);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Bloodthirst', 'Recovery 5% health on critical hits.', 10, 1, 22);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Never-fading', 'Revives with 20% health when die by a critical hit.', 10, 1, 23);
+INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Extractor', 'Increase dragon\'s blood find chance by 10% when kill another hero.', 10, 1, 24);

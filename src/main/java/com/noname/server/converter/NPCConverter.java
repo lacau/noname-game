@@ -19,7 +19,7 @@ public class NPCConverter {
             final NPCOut npcOut = new NPCOut();
             npcOut.setName(type.name());
             npcOut.setType(type.name());
-            npcOut.setLvl(1);
+            npcOut.setLevel(1);
             listNPCOut.add(npcOut);
         }
 

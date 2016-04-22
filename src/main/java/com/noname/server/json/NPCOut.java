@@ -13,7 +13,7 @@ public class NPCOut implements Serializable {
 
     private String type;
 
-    private Integer lvl;
+    private Integer level;
 
     public String getName() {
         return name;
@@ -31,11 +31,11 @@ public class NPCOut implements Serializable {
         this.type = type;
     }
 
-    public Integer getLvl() {
-        return lvl;
+    public Integer getLevel() {
+        return level;
     }
 
-    public void setLvl(Integer lvl) {
-        this.lvl = lvl;
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 }

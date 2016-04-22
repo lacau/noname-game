@@ -46,12 +46,12 @@ public class NPCService {
             RANDOM.setSeed(RANDOM.nextLong());
             final int rand = RANDOM.nextInt(LEVEL_RANGE);
             if(rand == 0)
-                npc.setLvl(heroLevel);
+                npc.setLevel(heroLevel);
             else
-                npc.setLvl(rand > 3 ? heroLevel + rand / 2 : heroLevel - rand / 2);
+                npc.setLevel(rand > 3 ? heroLevel + rand / 2 : heroLevel - rand / 2);
 
-            if(npc.getLvl() <= 0)
-                npc.setLvl(1);
+            if(npc.getLevel() <= 0)
+                npc.setLevel(1);
         }
 
         return listNPCOut;

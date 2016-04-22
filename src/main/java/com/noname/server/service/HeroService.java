@@ -10,6 +10,7 @@ import com.noname.server.entity.Hero;
 import com.noname.server.entity.Profile;
 import com.noname.server.entity.Skill;
 import com.noname.server.exception.HeroNotFoundException;
+import com.noname.server.exception.InternalServerErrorException;
 import com.noname.server.exception.ResourceAlreadyExistsException;
 import com.noname.server.exception.ResponseException;
 import com.noname.server.factory.HeroFactory;
@@ -70,6 +71,14 @@ public class HeroService {
             throw new HeroNotFoundException();
 
         return heroBasicConverter.convert(hero);
+    }
+
+    public Integer findHeroLevelById(Long cdId, Long credentialId) throws ResponseException {
+        final Integer level = heroRepository.findHeroLevelById(cdId, credentialId);
+        if(level == null)
+            throw new InternalServerErrorException();
+
+        return level;
     }
 
     public List<HeroOut> listHero(Long credentialId) {

@@ -4,6 +4,7 @@ import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -27,10 +28,10 @@ public class NPCEndPoint {
     private NPCService npcService;
 
     @GET
-    @Path("/list")
-    public Response getNPC(@HeaderParam("auth_id") Long authId) {
+    @Path("/list/{id}")
+    public Response getNPC(@PathParam("id") Long heroId, @HeaderParam("auth_id") Long authId) {
         try {
-            final List<NPCOut> npcs = npcService.listRandomNPC();
+            final List<NPCOut> npcs = npcService.listRandomNPC(heroId, authId);
             return Response.ok().entity(npcs).build();
         } catch(ResponseException e) {
             return Response.status(e.getStatus().value()).entity(new DefaultErrorOut(e.getMessage())).build();

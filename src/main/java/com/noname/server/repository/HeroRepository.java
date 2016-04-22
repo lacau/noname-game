@@ -47,7 +47,7 @@ public class HeroRepository {
             final Hero hero = query.getSingleResult();
             final TypedQuery<HeroSkill> querySkill = entityManager.createQuery(hql.toString(), HeroSkill.class);
             querySkill.setParameter("hero", hero);
-            
+
             hero.setHeroSkills(new HashSet<HeroSkill>(querySkill.getResultList()));
 
             return hero;
@@ -80,6 +80,24 @@ public class HeroRepository {
         query.setParameter("name", name);
 
         return query.getSingleResult();
+    }
+
+    public Integer findHeroLevelById(Long id, Long credentialId) {
+        StringBuilder hql = new StringBuilder();
+        hql.append("SELECT hero.level FROM Hero hero ");
+        hql.append("JOIN hero.credential credential ");
+        hql.append("WHERE credential.id = :credentialId ");
+        hql.append("AND hero.id = :heroId ");
+
+        final TypedQuery<Integer> query = entityManager.createQuery(hql.toString(), Integer.class);
+        query.setParameter("credentialId", credentialId);
+        query.setParameter("heroId", id);
+
+        try {
+            return query.getSingleResult();
+        } catch(NoResultException e) {
+            return null;
+        }
     }
 
     public List<Hero> listHero(Long credentialId) {

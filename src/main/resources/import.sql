@@ -23,3 +23,13 @@ INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type)
 INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Bloodthirst', 'Recovery 5% health on critical hits.', 10, 90, 22);
 INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Never-fading', 'Revives with 20% health when die by a critical hit.', 10, 95, 23);
 INSERT INTO skill(st_name, st_description, nr_power, nr_required_level, st_type) VALUES('Extractor', 'Increase dragon\'s blood find chance by 10% when kill another hero.', 10, 100, 24);
+
+INSERT INTO arena(nr_level, st_name) VALUES(10, "Arena lvl 10");
+INSERT INTO arena(nr_level, st_name) VALUES(20, "Arena lvl 20");
+INSERT INTO arena(nr_level, st_name) VALUES(30, "Arena lvl 30");
+INSERT INTO arena(nr_level, st_name) VALUES(45, "Arena lvl 45");
+INSERT INTO arena(nr_level, st_name) VALUES(60, "Arena lvl 60");
+INSERT INTO arena(nr_level, st_name) VALUES(75, "Arena lvl 75");
+INSERT INTO arena(nr_level, st_name) VALUES(100, "Arena lvl 100");
+INSERT INTO arena(nr_level, st_name) VALUES(130, "Arena lvl 130");
+INSERT INTO arena(nr_level, st_name) VALUES(150, "Arena lvl 150+");

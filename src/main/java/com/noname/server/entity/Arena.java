@@ -20,6 +20,9 @@ public class Arena implements Serializable {
     @Column(name = "cd_id")
     private Long cdId;
 
+    @Column(name = "nr_level")
+    private Integer level;
+
     @Column(name = "st_name")
     private String name;
 
@@ -29,6 +32,14 @@ public class Arena implements Serializable {
 
     public void setCdId(Long cdId) {
         this.cdId = cdId;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 
     public String getName() {

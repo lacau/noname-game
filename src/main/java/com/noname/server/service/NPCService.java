@@ -47,8 +47,10 @@ public class NPCService {
             final int rand = RANDOM.nextInt(LEVEL_RANGE);
             if(rand == 0)
                 npc.setLevel(heroLevel);
-            else
-                npc.setLevel(rand > 3 ? heroLevel + rand / 2 : heroLevel - rand / 2);
+            else {
+                final int halfRand = rand / 2;
+                npc.setLevel(rand > 3 ? heroLevel + halfRand : heroLevel - halfRand);
+            }
 
             if(npc.getLevel() <= 0)
                 npc.setLevel(1);

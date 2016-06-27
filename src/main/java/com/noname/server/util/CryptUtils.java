@@ -3,7 +3,7 @@ package com.noname.server.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import com.noname.server.entity.Credential;
+import com.noname.server.domain.entity.Credential;
 
 /**
  * Created by lacau on 12/02/16.

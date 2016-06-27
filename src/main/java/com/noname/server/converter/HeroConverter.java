@@ -3,9 +3,9 @@ package com.noname.server.converter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.noname.server.entity.Hero;
-import com.noname.server.entity.HeroItem;
-import com.noname.server.entity.HeroSkill;
+import com.noname.server.domain.entity.Hero;
+import com.noname.server.domain.entity.HeroItem;
+import com.noname.server.domain.entity.HeroSkill;
 import com.noname.server.json.HeroOut;
 import com.noname.server.json.ItemOut;
 import com.noname.server.json.SkillOut;

@@ -1,10 +1,10 @@
 package com.noname.server.service;
 
-import com.noname.server.entity.Arena;
+import com.noname.server.domain.entity.Arena;
 import com.noname.server.exception.ArenaNotFoundException;
 import com.noname.server.exception.InternalServerErrorException;
 import com.noname.server.exception.ResponseException;
-import com.noname.server.repository.ArenaRepository;
+import com.noname.server.domain.repository.ArenaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

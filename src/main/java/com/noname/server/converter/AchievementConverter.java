@@ -3,7 +3,7 @@ package com.noname.server.converter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.noname.server.entity.HeroAchievement;
+import com.noname.server.domain.entity.HeroAchievement;
 import com.noname.server.json.AchievementOut;
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,7 @@
 package com.noname.server.converter;
 
 import com.noname.server.cache.CredentialCache;
-import com.noname.server.entity.Credential;
+import com.noname.server.domain.entity.Credential;
 import org.springframework.stereotype.Component;
 
 /**

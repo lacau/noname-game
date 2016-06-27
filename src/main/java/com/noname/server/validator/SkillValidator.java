@@ -2,7 +2,7 @@ package com.noname.server.validator;
 
 import java.util.List;
 
-import com.noname.server.entity.Skill;
+import com.noname.server.domain.entity.Skill;
 import org.springframework.stereotype.Component;
 
 /**

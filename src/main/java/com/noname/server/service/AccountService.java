@@ -3,12 +3,12 @@ package com.noname.server.service;
 import java.util.Calendar;
 
 import com.noname.server.converter.CredentialConverter;
-import com.noname.server.entity.Credential;
+import com.noname.server.domain.entity.Credential;
 import com.noname.server.exception.ResourceAlreadyExistsException;
 import com.noname.server.exception.ResponseException;
 import com.noname.server.json.CredentialIn;
 import com.noname.server.json.CredentialOut;
-import com.noname.server.repository.CredentialRepository;
+import com.noname.server.domain.repository.CredentialRepository;
 import com.noname.server.util.CryptUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

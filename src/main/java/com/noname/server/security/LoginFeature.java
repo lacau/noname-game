@@ -5,8 +5,8 @@ import javax.ws.rs.container.ResourceInfo;
 import javax.ws.rs.core.FeatureContext;
 import javax.ws.rs.ext.Provider;
 
-import com.noname.server.endpoint.AccountEndPoint;
-import com.noname.server.endpoint.LoginEndPoint;
+import com.noname.server.resource.AccountResource;
+import com.noname.server.resource.LoginResource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -29,10 +29,10 @@ public class LoginFeature implements DynamicFeature {
     }
 
     private boolean resourceShouldBeFiltered(ResourceInfo resourceInfo) {
-        if(resourceInfo.getResourceClass() == AccountEndPoint.class)
+        if(resourceInfo.getResourceClass() == AccountResource.class)
             return false;
 
-        if(resourceInfo.getResourceClass() == LoginEndPoint.class)
+        if(resourceInfo.getResourceClass() == LoginResource.class)
             return false;
 
         return true;

@@ -1,6 +1,6 @@
 package com.noname.server.converter;
 
-import com.noname.server.entity.Credential;
+import com.noname.server.domain.entity.Credential;
 import com.noname.server.json.CredentialOut;
 import org.springframework.stereotype.Component;
 

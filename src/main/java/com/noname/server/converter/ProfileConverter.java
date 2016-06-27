@@ -1,6 +1,6 @@
 package com.noname.server.converter;
 
-import com.noname.server.entity.Profile;
+import com.noname.server.domain.entity.Profile;
 import com.noname.server.json.ProfileOut;
 import org.springframework.stereotype.Component;
 

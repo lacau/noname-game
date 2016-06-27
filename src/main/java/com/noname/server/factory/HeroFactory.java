@@ -4,10 +4,10 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.noname.server.entity.Credential;
-import com.noname.server.entity.Hero;
-import com.noname.server.entity.HeroSkill;
-import com.noname.server.entity.Skill;
+import com.noname.server.domain.entity.Credential;
+import com.noname.server.domain.entity.Hero;
+import com.noname.server.domain.entity.HeroSkill;
+import com.noname.server.domain.entity.Skill;
 import com.noname.server.util.HeroUtils;
 
 /**

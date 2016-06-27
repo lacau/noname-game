@@ -3,7 +3,7 @@ package com.noname.server.converter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.noname.server.entity.Hero;
+import com.noname.server.domain.entity.Hero;
 import com.noname.server.json.HeroOut;
 import org.springframework.stereotype.Component;
 
